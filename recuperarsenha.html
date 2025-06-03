@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recuperar Senha - Cursos Legais</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="icon curso.png" type="image/x-icon">
+
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .recuperar-container {
+      background: #000;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00e0fd;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: rgb(0, 224, 253);
+    }
+
+    .inputlog {
+      display: flex;
+      align-items: center;
+      background-color: black;
+      width: 100%;
+      height: 60px;
+      color: white;
+      border: none;
+      border-bottom: 2px solid white;
+      outline: none;
+      border-radius: 0;
+      padding: 0 20px;
+      margin: 20px 0;
+      font-size: 20px;
+    }
+
+    .inputlog ion-icon {
+      margin-right: 15px;
+      font-size: 24px;
+      color: rgb(255, 255, 255);
+    }
+
+    .inputlog input {
+      background-color: black;
+      width: 100%;
+      height: 40px;
+      color: white;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      padding: 5px;
+    }
+
+    button {
+      width: 100%;
+      height: 50px;
+      background-color: rgb(0, 224, 253);
+      color: white;
+      border-radius: 5px;
+      border: none;
+      font-size: 20px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+
+    button:hover {
+      background-color: black;
+      color: rgb(0, 224, 253);
+      border: 2px solid rgb(0, 224, 253);
+    }
+
+    .link-voltar {
+      margin-top: 15px;
+      color: rgb(0, 224, 253);
+      font-size: 18px;
+      text-decoration: underline;
+      cursor: pointer;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="recuperar-container">
+    <h1>Recuperar Senha</h1>
+    
+    <div class="inputlog">
+      <ion-icon name="mail-outline"></ion-icon>
+      <input type="email" id="emailRecuperar" placeholder="Digite seu email" required>
+    </div>
+
+    <button id="btnEnviar">Enviar Link de Recuperação</button>
+
+    <div class="link-voltar" onclick="voltarLogin()">Voltar ao Login</div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    const btnEnviar = document.getElementById('btnEnviar');
+
+    btnEnviar.addEventListener('click', async () => {
+      const email = document.getElementById('emailRecuperar').value.trim();
+
+      if (!email) {
+        alert('Por favor, insira seu email.');
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/api/recuperar-senha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          alert('Link de recuperação enviado para seu email.');
+        } else {
+          const data = await res.json();
+          alert('Erro: ' + (data.error || 'Não foi possível enviar o email.'));
+        }
+      } catch (e) {
+        alert('Erro ao conectar com o servidor.');
+      }
+    });
+
+    function voltarLogin() {
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>

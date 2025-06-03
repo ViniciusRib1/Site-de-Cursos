@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home do Usuário</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="icon curso.png" type="image/x-icon">
+  
+  <style>
+    /* Estilo para o cartão de perfil */
+    .card-perfil {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 300px;
+      margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+    }
+
+    .card-perfil img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .card-perfil h2 {
+      font-size: 1.5em;
+      margin: 0;
+    }
+
+    .card-perfil p {
+      font-size: 1em;
+      color: #555;
+      text-align: center;
+    }
+
+    #editarDescricaoBtn {
+      margin-left: 10px;
+      padding: 4px 8px;
+      font-size: 0.9em;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 1px solid #00e0fd;
+      background-color: #e0f7fb;
+      color: #007a8a;
+    }
+
+    #editarDescricaoBtn:hover {
+      background-color: #00e0fd;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="cabecalho">
+    <a href="User.html" class="logo"> Cursos <strong><span style="color: rgb(0, 224, 253);">Legais</span></strong></a>
+    <div class="menulinks">
+      <nav>
+        <a href="UserMatricula.html"> <ion-icon name="reader-outline"></ion-icon> Matrícula</a>
+        <a href="Usercurso.html"> <ion-icon name="school-outline"></ion-icon>Cursos</a>
+        <a href="Usercertificado.html"> <ion-icon name="document-text-outline"></ion-icon> Certificado</a>
+      </nav>
+      <p href="" id="not">
+        <ion-icon name="notifications-outline" id="b"></ion-icon>
+      </p>
+    </div>
+    <div class="perfil">
+      <div class="foto">
+        <img id="fotoPerfil" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
+      </div>
+      <ion-icon name="chevron-down-outline" id="icon1" style="display: none; font-size: 25px; padding-left: 10px; cursor: pointer;" onclick="fecharConf()" class="iconPer"></ion-icon>
+      <ion-icon name="chevron-back-outline" style="font-size: 25px; padding-left: 10px; cursor: pointer;" id="icon2" onclick="abrirConf()" class="iconPer"></ion-icon>
+      <a href="User.html" id="nomeUsuario"><ion-icon name="person-outline"></ion-icon> Perfil</a>
+    </div>
+  </header>
+
+  <div id="configs">
+    <h1>Configurações:</h1>
+    <nav>
+      <a href="editarperfiluser.html"><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
+    </nav>
+    <nav>
+      <a href=""><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
+    </nav>
+    <nav>
+      <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
+    </nav>
+  </div>
+
+  <br>
+
+  <main>
+    <h1>Bem-vindo à sua página inicial, <span id="nomeUsuarioHome"></span>!</h1>
+
+    <section class="card-perfil">
+      <img id="fotoPerfilCard" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
+      <h2 id="nomePerfilCard"></h2>
+      <p id="descricaoPerfilCard"></p>
+    </section>
+
+    <section>
+      <h2>Seus dados:</h2>
+      <p><strong>Nome:</strong> <span id="nome"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>Descrição da conta:</strong> <span id="sobre"></span>
+        <button id="editarDescricaoBtn">Editar</button>
+      </p>
+      <h3>Cursos matriculados:</h3>
+      <ul id="listaCursos"></ul>
+    </section>
+  </main>
+
+  <div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
+
+  <script>
+    function abrirConf() {
+      const icon1 = document.getElementById("icon1");
+      const icon2 = document.getElementById("icon2");
+      const containerConfig = document.getElementById("configs");
+
+      containerConfig.classList.add("active");
+      icon1.style.display = "block";
+      icon2.style.display = "none";
+    }
+
+    function fecharConf() {
+      const icon1 = document.getElementById("icon1");
+      const icon2 = document.getElementById("icon2");
+      const containerConfig = document.getElementById("configs");
+
+      containerConfig.classList.remove("active");
+      icon1.style.display = "none";
+      icon2.style.display = "block";
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+      if (!usuario) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Atualiza foto e nomes do header
+      document.getElementById("fotoPerfil").src = usuario.foto || "Profile-PNG-Free-Image.png";
+      document.getElementById("nomeUsuario").textContent = usuario.nome;
+      document.getElementById("nomeUsuarioHome").textContent = usuario.nome;
+
+      document.getElementById("nome").textContent = usuario.nome || "";
+      document.getElementById("email").textContent = usuario.email || "";
+      document.getElementById("sobre").textContent = usuario.sobre || "";
+
+      // Lista cursos
+      const listaCursos = document.getElementById("listaCursos");
+      listaCursos.innerHTML = "";
+
+      if (Array.isArray(usuario.cursos) && usuario.cursos.length > 0) {
+        usuario.cursos.forEach(curso => {
+          const li = document.createElement("li");
+          li.textContent = curso;
+          listaCursos.appendChild(li);
+        });
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "Nenhum curso matriculado.";
+        listaCursos.appendChild(li);
+      }
+
+      document.getElementById("fotoPerfilCard").src = usuario.foto || "Profile-PNG-Free-Image.png";
+      document.getElementById("nomePerfilCard").textContent = usuario.nome || "Nome não disponível";
+      document.getElementById("descricaoPerfilCard").textContent = usuario.sobre || "Descrição não disponível.";
+    });
+
+    // Botão editar descrição
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("editarDescricaoBtn").addEventListener("click", () => {
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado")) || {};
+        const novaDescricao = prompt("Digite uma nova descrição para sua conta:", usuario.sobre || "");
+        if (novaDescricao !== null) {
+          usuario.sobre = novaDescricao;
+          localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+          // Atualiza os campos na página
+          document.getElementById("sobre").textContent = novaDescricao;
+          document.getElementById("descricaoPerfilCard").textContent = novaDescricao;
+        }
+      });
+    });
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

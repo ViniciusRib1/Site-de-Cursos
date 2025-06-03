@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matrículas do Usuário</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="icon curso.png" type="image/x-icon">
+</head>
+  <header id="cabecalho">
+    <a href="User.html" class="logo"> Cursos <strong><span style="color: rgb(0, 224, 253);">Legais</span></strong></a>
+    <div class="menulinks">
+      <nav>
+        <a href="UserMatricula.html" id="select"> <ion-icon name="reader-outline"></ion-icon> Matrícula</a>
+        <a href="Usercurso.html"> <ion-icon name="school-outline"></ion-icon>Cursos</a>
+        <a href="Usercertificado.html"> <ion-icon name="document-text-outline"></ion-icon> Certificado</a>
+      </nav>
+      <p href="" id="not">
+        <ion-icon name="notifications-outline" id="b"></ion-icon>
+      </p>
+    </div>
+    <div class="perfil">
+      <div class="foto">
+        <img id="fotoPerfil" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
+      </div>
+      <ion-icon name="chevron-down-outline" id="icon1" style="display: none; font-size: 25px; padding-left: 10px; cursor: pointer;" onclick="fecharConf()" class="iconPer"></ion-icon>
+      <ion-icon name="chevron-back-outline" style="font-size: 25px; padding-left: 10px; cursor: pointer;" id="icon2" onclick="abrirConf()" class="iconPer"></ion-icon>
+      <a href="User.html" id="nomeUsuario"><ion-icon name="person-outline"></ion-icon> Perfil</a>
+    </div>
+  </header>
+
+  <div id="configs">
+    <h1>Configurações:</h1>
+    <nav>
+      <a href="editarperfiluser.html"><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
+    </nav>
+    <nav>
+      <a href=""><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
+    </nav>
+    <nav>
+      <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
+    </nav>
+  </div>
+
+  <br>
+    <h1 id="titulo"><strong>Matrículas</strong></h1>
+    <div class="matriculas">
+        <div class="matricula"> 
+            <h1><strong>Plano 1</strong></h1>
+            <div class="contma">
+                    <h2>Esse plano vai te dar esses benefícios: </h2>
+                    <h3> ∙  Acesso limitado a alguns cursos introdutórios. </h3>
+                    <h3> ∙  Comunidade de alunos.</h3>
+                    <h3> ∙  Certificado não incluso.</h3>
+                    <h3> ∙  Suporte limitado.</h3>
+                    <h2>Preço: 10R$ por mês</h2>
+            
+            </div>
+            <button>Comprar</button> 
+        </div>
+        
+
+            <br>
+            <div class="matricula">
+            <h1><strong>Plano 2</strong></h1>
+            <div class="contma">
+                    <h2>Esse plano vai te dar esses benefícios: </h2>
+                    <h3> ∙  Acesso a todos os cursos. </h3>
+                    <h3> ∙  Exercícios e quizzes</h3>
+                    <h3> ∙  Certificado digital.</h3>
+                    <h3> ∙  Suporte via e-mail.</h3>
+                    <h2>Preço: 40R$ por mês</h2>
+            
+            </div>
+            
+            <button>Comprar</button> 
+        </div>
+        <br>
+         <div class="matricula"> 
+            <h1><strong>Plano 3</strong></h1>
+            <div class="contma">
+                    <h2>Esse plano vai te dar esses benefícios: </h2>
+                    <h3> ∙  Tudo do plano 2. </h3>
+                    <h3> ∙  Aulas ao vivo e workshops exclusivos.</h3>
+                    <h3> ∙  Mentoria individual.</h3>
+                    <h3> ∙  Suporte prioritário (chat ou WhatsApp).</h3>
+                    <h2>Preço: 100R$ por mês</h2>
+            
+            </div>
+            <br>
+            <button>Comprar</button> 
+        </div>
+    </div>
+    <div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+      if (!usuario) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("fotoPerfil").src = usuario.foto || "Profile-PNG-Free-Image.png";
+      document.getElementById("nomeUsuario").textContent = usuario.nome;
+      document.getElementById("nomeUsuarioHome").textContent = usuario.nome;
+
+      document.getElementById("nome").textContent = usuario.nome || "";
+      document.getElementById("email").textContent = usuario.email || "";
+      document.getElementById("telefone").textContent = usuario.telefone || "";
+
+      const listaCursos = document.getElementById("listaCursos");
+      listaCursos.innerHTML = "";
+
+      if (Array.isArray(usuario.cursos) && usuario.cursos.length > 0) {
+        usuario.cursos.forEach(curso => {
+          const li = document.createElement("li");
+          li.textContent = curso;
+          listaCursos.appendChild(li);
+        });
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "Nenhum curso matriculado.";
+        listaCursos.appendChild(li);
+      }
+    });
+  </script>
+  <script src="index.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

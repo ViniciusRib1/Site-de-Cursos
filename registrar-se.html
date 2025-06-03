@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cursos legais</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="icon curso.png" type="image/x-icon" />
+  <style>
+    #editorContainer {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    #editorCanvas {
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: grab;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    #confirmCrop {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #confirmCrop:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header id="cabecalho">
+    <a href="index.html" class="logo">
+      Cursos <strong><span style="color: rgb(0, 224, 253)">Legais</span></strong>
+    </a>
+    <div class="menulinks">
+      <nav>
+        <a href="matricula.html"><ion-icon name="reader-outline"></ion-icon> Matrícula</a>
+        <a href="cursos.html"><ion-icon name="school-outline"></ion-icon> Cursos</a>
+        <a href="certificado.html"><ion-icon name="document-text-outline"></ion-icon> Certificado</a>
+        <a href="registrar-se.html" id="select"><ion-icon name="person-add-outline"></ion-icon> Registrar-se</a>
+        <a href="login.html"><ion-icon name="key-outline"></ion-icon> Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <br /><br /><br /><br /><br /><br /><br />
+
+  <h1 id="titulo"><strong>Registrar-se</strong></h1>
+  <div class="Registrar">
+    <h1>Registrar-se</h1>
+    <div class="fotoreg">
+      <img src="" alt="" id="fotoPreview" />
+    </div>
+
+    <div class="itensReg">
+      <h2>Coloque sua foto: </h2>
+      <input type="file" name="" id="inputFoto" />
+
+      <h2>Coloque o seu email: </h2>
+      <div class="inputlog">
+        <ion-icon name="mail-outline"></ion-icon>
+        <input type="email" id="email" placeholder="Coloque seu email" />
+      </div>
+
+      <h2>Coloque o seu nome:</h2>
+      <div class="inputlog">
+        <ion-icon name="person-outline"></ion-icon>
+        <input type="text" id="nome" placeholder="Coloque o seu nome" />
+      </div>
+
+      <h2>Coloque a sua senha: </h2>
+      <div class="inputlog">
+        <ion-icon name="key-outline"></ion-icon>
+        <input type="password" id="senha1" placeholder="Coloque sua senha" class="senha" />
+        <span class="toggleSenha">
+          <ion-icon name="eye-outline"></ion-icon>
+        </span>
+      </div>
+
+      <h2>Repita a sua senha: </h2>
+      <div class="inputlog">
+        <ion-icon name="key-outline"></ion-icon>
+        <input type="password" id="senha2" placeholder="Repita sua senha" class="senha" />
+        <span class="toggleSenha">
+          <ion-icon name="eye-outline"></ion-icon>
+        </span>
+      </div>
+
+      <h2>Descrição do usuário:</h2>
+      <textarea id="userDescription" rows="4" placeholder="Escreva uma descrição sobre você"></textarea>
+
+      <br />
+      <button id="btnRegistrar">Registrar-se</button>
+    </div>
+  </div>
+
+  <div class="obs">
+    <h1>Criado por Vinicius Ribeiro</h1>
+  </div>
+
+  <div id="editorContainer">
+    <canvas id="editorCanvas" width="400" height="400"></canvas>
+    <button id="confirmCrop">Usar esta foto</button>
+  </div>
+
+  <script>
+    const inputFoto = document.getElementById('inputFoto');
+    const fotoPreview = document.getElementById('fotoPreview');
+    const editorContainer = document.getElementById('editorContainer');
+    const editorCanvas = document.getElementById('editorCanvas');
+    const confirmCrop = document.getElementById('confirmCrop');
+    const ctx = editorCanvas.getContext('2d');
+
+    let img = new Image();
+    let offsetX = 0, offsetY = 0;
+    let scale = 1;
+    let isDragging = false;
+    let startX = 0, startY = 0;
+
+    inputFoto.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        img.src = event.target.result;
+        editorContainer.style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    img.onload = function () {
+      const canvasSize = editorCanvas.width;
+      const scaleX = canvasSize / img.width;
+      const scaleY = canvasSize / img.height;
+      scale = Math.max(scaleX, scaleY);
+      offsetX = (img.width * scale - canvasSize) / 2;
+      offsetY = (img.height * scale - canvasSize) / 2;
+      drawImage();
+    };
+
+    function drawImage() {
+      ctx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(editorCanvas.width / 2, editorCanvas.height / 2, editorCanvas.width / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(
+        img,
+        offsetX / scale,
+        offsetY / scale,
+        editorCanvas.width / scale,
+        editorCanvas.height / scale,
+        0,
+        0,
+        editorCanvas.width,
+        editorCanvas.height
+      );
+      ctx.restore();
+    }
+
+    editorCanvas.addEventListener('mousedown', function (e) {
+      isDragging = true;
+      startX = e.offsetX;
+      startY = e.offsetY;
+    });
+
+    editorCanvas.addEventListener('mouseup', function () {
+      isDragging = false;
+    });
+
+    editorCanvas.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      const dx = e.offsetX - startX;
+      const dy = e.offsetY - startY;
+      offsetX -= dx;
+      offsetY -= dy;
+      offsetX = Math.max(0, Math.min(offsetX, img.width * scale - editorCanvas.width));
+      offsetY = Math.max(0, Math.min(offsetY, img.height * scale - editorCanvas.height));
+      startX = e.offsetX;
+      startY = e.offsetY;
+      drawImage();
+    });
+
+    confirmCrop.addEventListener('click', function () {
+      const croppedData = editorCanvas.toDataURL('image/png');
+      fotoPreview.src = croppedData;
+      editorContainer.style.display = 'none';
+    });
+
+    // Registrar com fetch para o backend
+    document.getElementById('btnRegistrar').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const nome = document.getElementById('nome').value.trim();
+      const senha1 = document.getElementById('senha1').value;
+      const senha2 = document.getElementById('senha2').value;
+      const descricao = document.getElementById('userDescription').value.trim();
+      const foto = fotoPreview.src;
+
+      if (!email || !nome || !senha1 || !senha2) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+      }
+      if (senha1 !== senha2) {
+        alert('As senhas não coincidem!');
+        return;
+      }
+      if (!foto || foto === '') {
+        alert('Por favor, envie uma foto!');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/api/usuarios', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, nome, senha: senha1, foto, descricao })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert('Usuário registrado com sucesso!');
+          window.location.href = 'login.html'; // ou onde quiser redirecionar
+        } else {
+          alert('Erro: ' + (data.error || 'Não foi possível registrar'));
+        }
+      } catch (error) {
+        alert('Erro ao conectar com o servidor: ' + error.message);
+      }
+    });
+
+    // Toggle mostrar/esconder senha
+    document.querySelectorAll('.toggleSenha').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const input = toggle.previousElementSibling;
+        if (input.type === 'password') {
+          input.type = 'text';
+          toggle.querySelector('ion-icon').name = 'eye-off-outline';
+        } else {
+          input.type = 'password';
+          toggle.querySelector('ion-icon').name = 'eye-outline';
+        }
+      });
+    });
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

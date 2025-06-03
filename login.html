@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Cursos Legais</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="icon curso.png" type="image/x-icon" />
+
+  <style>
+    h1#titulo {
+      margin-bottom: 40px;
+      font-size: 48px;
+      color: rgb(255, 255, 255);
+    }
+
+    .login-container {
+      max-width: 1000px;
+      height: 800px;
+      margin: 0 auto;
+      background: #000;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00e0fd;
+    }
+
+    .inputlog {
+      display: flex;
+      align-items: center;
+      background-color: black;
+      width: 900px;
+      height: 80px;
+      color: white;
+      border: none;
+      border-bottom: 2px solid white;
+      outline: none;
+      border-radius: 0;
+      padding: 0 30px;
+      margin: 20px auto;
+      font-size: 40px;
+    }
+
+    .inputlog ion-icon {
+      margin-right: 15px;
+      font-size: 40px;
+      color: rgb(255, 255, 255);
+    }
+
+    .inputlog input {
+      background-color: black;
+      width: 100%;
+      height: 60px;
+      color: white;
+      border: none;
+      outline: none;
+      border-radius: 0;
+      font-size: 20px;
+      padding: 10px;
+    }
+
+    .inputlog input::placeholder {
+      color: rgb(168, 167, 167);
+      font-size: 30px;
+    }
+
+    .inputlog.password-container {
+      position: relative;
+    }
+
+    .inputlog.password-container span {
+      position: absolute;
+      right: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      color: rgb(0, 224, 253);
+    }
+
+    .inputlog.password-container span ion-icon {
+      font-size: 36px;
+    }
+
+    button {
+      margin: 30px auto;
+      width: 1000px;
+      height: 60px;
+      background-color: rgb(0, 224, 253);
+      color: rgb(255, 255, 255);
+      border-radius: 5px;
+      border: none;
+      font-size: 30px;
+      padding: 10px;
+      transition: all 0.5s;
+      cursor: pointer;
+      display: block;
+    }
+
+    button:hover {
+      background-color: rgb(0, 0, 0);
+      color: rgb(0, 224, 253);
+      border: rgb(0, 224, 253) solid 2px;
+    }
+
+    .link-esqueci {
+      margin-top: 10px;
+      color: rgb(0, 224, 253);
+      cursor: pointer;
+      font-size: 28px;
+      text-decoration: underline;
+    }
+
+    #modalEsqueciSenha {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #modalEsqueciSenha .modal-content {
+      background: #000;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00e0fd;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    #modalEsqueciSenha h2 {
+      color: rgb(0, 224, 253);
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    #modalEsqueciSenha .inputlog {
+      width: 100%;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    #modalEsqueciSenha button {
+      width: 100%;
+      height: 50px;
+      font-size: 18px;
+    }
+
+    #modalEsqueciSenha .close-modal {
+      margin-top: 10px;
+      cursor: pointer;
+      color: rgb(0, 224, 253);
+      font-size: 14px;
+      text-decoration: underline;
+    }
+
+    #titulo-container {
+      border-bottom: solid white 2px;
+      padding: 10px;
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="cabecalho">
+    <a href="index.html" class="logo">
+      Cursos <strong><span style="color: rgb(0, 224, 253)">Legais</span></strong>
+    </a>
+    <div class="menulinks">
+      <nav>
+         <a href="matricula.html"> <ion-icon name="reader-outline"></ion-icon> Matrícula</a>
+                <a href="cursos.html"> <ion-icon name="school-outline"></ion-icon>Cursos</a>
+                <a href="certificado.html"> <ion-icon name="document-text-outline"></ion-icon> Certificado</a>
+                <a href="registrar-se.html"><ion-icon name="person-add-outline"></ion-icon> Registrar-se</a>
+                <a href="login.html" id="select"> <ion-icon name="key-outline"></ion-icon> Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <h1 id="titulo"><strong>Login</strong></h1>
+  <div class="login-container">
+    <h1 id="titulo-container"><strong>Login</strong></h1>
+    <div class="inputlog">
+      <ion-icon name="mail-outline"></ion-icon>
+      <input type="email" id="emailLogin" placeholder="Digite seu email" />
+    </div>
+
+    <div class="inputlog password-container">
+      <ion-icon name="key-outline"></ion-icon>
+      <input type="password" id="senhaLogin" placeholder="Digite sua senha" />
+      <span id="toggleSenha">
+        <ion-icon name="eye-outline"></ion-icon>
+        <ion-icon name="eye-off-outline" style="display:none;"></ion-icon>
+      </span>
+    </div>
+
+    <button id="btnLogin">Entrar</button>
+    <div class="link-esqueci" id="linkEsqueciSenha">Esqueci a senha</div>
+  </div>
+
+  <!-- Modal Esqueci Senha -->
+  <div id="modalEsqueciSenha">
+    <div class="modal-content">
+      <h2>Recuperar Senha</h2>
+      <div class="inputlog">
+        <ion-icon name="mail-outline"></ion-icon>
+        <input type="email" id="emailRecuperar" placeholder="Digite seu email" />
+      </div>
+      <button id="btnRecuperarSenha">Enviar Email</button>
+      <div class="close-modal" id="fecharModal">Cancelar</div>
+    </div>
+  </div>
+<div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    const btnLogin = document.getElementById('btnLogin');
+
+    btnLogin.addEventListener('click', async () => {
+      const email = document.getElementById('emailLogin').value.trim();
+      const senha = document.getElementById('senhaLogin').value;
+
+      if (!email || !senha) {
+        alert('Por favor, preencha o email e a senha.');
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha }),
+        });
+
+        if (res.ok) {
+          const usuario = await res.json();
+          localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+          alert('Login realizado com sucesso!');
+          window.location.href = 'User.html';
+        } else {
+          const data = await res.json();
+          alert('Erro: ' + (data.error || 'Credenciais inválidas'));
+        }
+      } catch (e) {
+        alert('Erro ao conectar com o servidor.');
+      }
+    });
+
+    const senhaInput = document.getElementById('senhaLogin');
+    const toggleSenha = document.getElementById('toggleSenha');
+    const iconEye = toggleSenha.querySelector('ion-icon[name="eye-outline"]');
+    const iconEyeOff = toggleSenha.querySelector('ion-icon[name="eye-off-outline"]');
+
+    toggleSenha.addEventListener('click', () => {
+      if (senhaInput.type === 'password') {
+        senhaInput.type = 'text';
+        iconEye.style.display = 'none';
+        iconEyeOff.style.display = 'inline';
+      } else {
+        senhaInput.type = 'password';
+        iconEye.style.display = 'inline';
+        iconEyeOff.style.display = 'none';
+      }
+    });
+
+    const linkEsqueciSenha = document.getElementById('linkEsqueciSenha');
+    const modalEsqueciSenha = document.getElementById('modalEsqueciSenha');
+    const fecharModal = document.getElementById('fecharModal');
+    const btnRecuperarSenha = document.getElementById('btnRecuperarSenha');
+
+    linkEsqueciSenha.addEventListener('click', () => {
+      modalEsqueciSenha.style.display = 'flex';
+    });
+
+    fecharModal.addEventListener('click', () => {
+      modalEsqueciSenha.style.display = 'none';
+    });
+
+    btnRecuperarSenha.addEventListener('click', async () => {
+      const emailRec = document.getElementById('emailRecuperar').value.trim();
+      if (!emailRec) {
+        alert('Por favor, insira seu email para recuperação.');
+        return;
+      }
+      try {
+        const res = await fetch('http://localhost:3000/api/recuperar-senha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailRec }),
+        });
+
+        if (res.ok) {
+          alert('Link de recuperação enviado para ' + emailRec);
+        } else {
+          alert('Erro ao enviar o link de recuperação.');
+        }
+      } catch (e) {
+        alert('Erro ao conectar com o servidor.');
+      }
+      modalEsqueciSenha.style.display = 'none';
+    });
+    
+  </script>
+</body>
+</html>
