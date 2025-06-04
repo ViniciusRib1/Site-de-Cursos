@@ -14,13 +14,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 2px solid #ccc;
+      border: 2px solid #00e0fd;
       border-radius: 20px;
       padding: 20px;
       max-width: 300px;
       margin: 20px auto;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      background-color: #fff;
+      box-shadow: 0 4px 8px #00e0fd;
+      background-color: #000000;
+      color: white;
     }
 
     .card-perfil img {
@@ -38,7 +39,7 @@
 
     .card-perfil p {
       font-size: 1em;
-      color: #555;
+      color: #ffffff;
       text-align: center;
     }
 
@@ -62,14 +63,14 @@
 
 <body>
   <header id="cabecalho">
-    <a href="User.html" class="logo"> Cursos <strong><span style="color: rgb(0, 224, 253);">Legais</span></strong></a>
+    <a href="User.html" class="logo">Cursos <strong><span style="color: rgb(0, 224, 253);">Legais</span></strong></a>
     <div class="menulinks">
       <nav>
-        <a href="UserMatricula.html"> <ion-icon name="reader-outline"></ion-icon> Matrícula</a>
-        <a href="Usercurso.html"> <ion-icon name="school-outline"></ion-icon>Cursos</a>
-        <a href="Usercertificado.html"> <ion-icon name="document-text-outline"></ion-icon> Certificado</a>
+        <a href="UserMatricula.html"><ion-icon name="reader-outline"></ion-icon> Matrícula</a>
+        <a href="Usercurso.html"><ion-icon name="school-outline"></ion-icon> Cursos</a>
+        <a href="Usercertificado.html"><ion-icon name="document-text-outline"></ion-icon> Certificado</a>
       </nav>
-      <p href="" id="not">
+      <p id="not">
         <ion-icon name="notifications-outline" id="b"></ion-icon>
       </p>
     </div>
@@ -89,7 +90,7 @@
       <a href="editarperfiluser.html"><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
     </nav>
     <nav>
-      <a href=""><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
+      <a href="#"><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
     </nav>
     <nav>
       <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
@@ -103,7 +104,8 @@
 
     <section class="card-perfil">
       <img id="fotoPerfilCard" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
-      <h2 id="nomePerfilCard"></h2>
+      <h2 id="nomePerfilCard" style="border-bottom: #fff solid 2px; width: 200px; padding: 10px;"></h2>
+      <h2 style="">Descrição</h2>
       <p id="descricaoPerfilCard"></p>
     </section>
 
@@ -111,7 +113,7 @@
       <h2>Seus dados:</h2>
       <p><strong>Nome:</strong> <span id="nome"></span></p>
       <p><strong>Email:</strong> <span id="email"></span></p>
-      <p><strong>Descrição da conta:</strong> <span id="sobre"></span>
+      <p><strong>Descrição da conta:</strong> <span id="descricaoSpan"></span>
         <button id="editarDescricaoBtn">Editar</button>
       </p>
       <h3>Cursos matriculados:</h3>
@@ -119,7 +121,9 @@
     </section>
   </main>
 
-  <div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
+  <div class="obs">
+    <h1>Criado por Vinicius Ribeiro</h1>
+  </div>
 
   <script>
     function abrirConf() {
@@ -149,19 +153,15 @@
         return;
       }
 
-      // Atualiza foto e nomes do header
       document.getElementById("fotoPerfil").src = usuario.foto || "Profile-PNG-Free-Image.png";
       document.getElementById("nomeUsuario").textContent = usuario.nome;
       document.getElementById("nomeUsuarioHome").textContent = usuario.nome;
-
       document.getElementById("nome").textContent = usuario.nome || "";
       document.getElementById("email").textContent = usuario.email || "";
-      document.getElementById("sobre").textContent = usuario.sobre || "";
+      document.getElementById("descricaoSpan").textContent = usuario.descricao || "";
 
-      // Lista cursos
       const listaCursos = document.getElementById("listaCursos");
       listaCursos.innerHTML = "";
-
       if (Array.isArray(usuario.cursos) && usuario.cursos.length > 0) {
         usuario.cursos.forEach(curso => {
           const li = document.createElement("li");
@@ -176,22 +176,11 @@
 
       document.getElementById("fotoPerfilCard").src = usuario.foto || "Profile-PNG-Free-Image.png";
       document.getElementById("nomePerfilCard").textContent = usuario.nome || "Nome não disponível";
-      document.getElementById("descricaoPerfilCard").textContent = usuario.sobre || "Descrição não disponível.";
-    });
+      document.getElementById("descricaoPerfilCard").textContent = usuario.descricao || "Descrição não disponível.";
 
-    // Botão editar descrição
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("editarDescricaoBtn").addEventListener("click", () => {
-        const usuario = JSON.parse(localStorage.getItem("usuarioLogado")) || {};
-        const novaDescricao = prompt("Digite uma nova descrição para sua conta:", usuario.sobre || "");
-        if (novaDescricao !== null) {
-          usuario.sobre = novaDescricao;
-          localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-          // Atualiza os campos na página
-          document.getElementById("sobre").textContent = novaDescricao;
-          document.getElementById("descricaoPerfilCard").textContent = novaDescricao;
-        }
-      });
+      window.usuarioId = usuario.id;
+      window.usuarioEmail = usuario.email;
+      window.usuarioNome = usuario.nome;
     });
   </script>
 

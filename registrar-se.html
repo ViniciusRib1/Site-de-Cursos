@@ -7,38 +7,85 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="shortcut icon" href="icon curso.png" type="image/x-icon" />
   <style>
+    /* Deixa a imagem de perfil dentro de um círculo branco */
+    #previewFoto {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: white;       /* fundo branco */
+      object-fit: cover;
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
     #editorContainer {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      backdrop-filter: blur(8px);
-      background: rgba(0,0,0,0.6);
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgb(0, 0, 0);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00e0fd;
+      z-index: 999;
       flex-direction: column;
+      align-items: center;
     }
+
     #editorCanvas {
-      width: 400px; height: 400px;
+      border: 1px solid #ccc;
       border-radius: 50%;
-      background: #fff;
-      cursor: grab;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      display: block;
+      background: white;  /* fundo branco para o corte */
     }
-    #confirmCrop {
-      margin-top: 20px;
+
+    #zoomRange {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    button {
+      width: 1000px;
+      height: 50px;
+      margin-top: 10px;
       padding: 10px 20px;
-      background: #4caf50;
+      cursor: pointer;
+      background-color: #00e0fd;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-size: 20px;
     }
-    #confirmCrop:hover {
-      background: #45a049;
+
+    button:hover {
+      background-color: #000000;
+      border: #00e0fd solid 2px;
+    }
+
+    /* Botão de cancelar no modal com estilo próprio */
+    #cancelCrop {
+      width: 1000px;
+      height: 40px;
+      background-color: #ff4d4d;
+      margin-top: 10px;
+    }
+    #cancelCrop:hover {
+      background-color: #000000;
+      border: #ff4d4d solid 2px;
+    }
+
+    .toggleSenha {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    h2 {
+      text-align: left;
+      margin-bottom: 10px; /* espaçamento entre linhas */
     }
   </style>
 </head>
@@ -58,55 +105,45 @@
     </div>
   </header>
 
-  <br /><br /><br /><br /><br /><br /><br />
-
   <h1 id="titulo"><strong>Registrar-se</strong></h1>
+  
   <div class="Registrar">
     <h1>Registrar-se</h1>
-    <div class="fotoreg">
-      <img src="" alt="" id="fotoPreview" />
+    <h2>Coloque sua foto:</h2>
+    <img id="previewFoto" src="" alt="Sua foto">
+    <input type="file" id="inputFoto" accept="image/*">
+
+    <h2>Coloque o seu email:</h2>
+    <div class="inputlog">
+      <ion-icon name="mail-outline"></ion-icon>
+      <input type="email" id="email" placeholder="Coloque seu email" />
     </div>
 
-    <div class="itensReg">
-      <h2>Coloque sua foto: </h2>
-      <input type="file" name="" id="inputFoto" />
-
-      <h2>Coloque o seu email: </h2>
-      <div class="inputlog">
-        <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" id="email" placeholder="Coloque seu email" />
-      </div>
-
-      <h2>Coloque o seu nome:</h2>
-      <div class="inputlog">
-        <ion-icon name="person-outline"></ion-icon>
-        <input type="text" id="nome" placeholder="Coloque o seu nome" />
-      </div>
-
-      <h2>Coloque a sua senha: </h2>
-      <div class="inputlog">
-        <ion-icon name="key-outline"></ion-icon>
-        <input type="password" id="senha1" placeholder="Coloque sua senha" class="senha" />
-        <span class="toggleSenha">
-          <ion-icon name="eye-outline"></ion-icon>
-        </span>
-      </div>
-
-      <h2>Repita a sua senha: </h2>
-      <div class="inputlog">
-        <ion-icon name="key-outline"></ion-icon>
-        <input type="password" id="senha2" placeholder="Repita sua senha" class="senha" />
-        <span class="toggleSenha">
-          <ion-icon name="eye-outline"></ion-icon>
-        </span>
-      </div>
-
-      <h2>Descrição do usuário:</h2>
-      <textarea id="userDescription" rows="4" placeholder="Escreva uma descrição sobre você"></textarea>
-
-      <br />
-      <button id="btnRegistrar">Registrar-se</button>
+    <h2>Coloque o seu nome:</h2>
+    <div class="inputlog">
+      <ion-icon name="person-outline"></ion-icon>
+      <input type="text" id="nome" placeholder="Coloque o seu nome" />
     </div>
+
+    <h2>Coloque a sua senha:</h2>
+    <div class="inputlog">
+      <ion-icon name="key-outline"></ion-icon>
+      <input type="password" id="senha1" placeholder="Coloque sua senha" class="senha" />
+      <span class="toggleSenha">
+        <ion-icon name="eye-outline"></ion-icon>
+      </span>
+    </div>
+
+    <h2>Repita a sua senha:</h2>
+    <div class="inputlog">
+      <ion-icon name="key-outline"></ion-icon>
+      <input type="password" id="senha2" placeholder="Repita sua senha" class="senha" />
+      <span class="toggleSenha">
+        <ion-icon name="eye-outline"></ion-icon>
+      </span>
+    </div>
+
+    <button id="btnRegistrar">Registrar-se</button>
   </div>
 
   <div class="obs">
@@ -114,136 +151,103 @@
   </div>
 
   <div id="editorContainer">
-    <canvas id="editorCanvas" width="400" height="400"></canvas>
+    <h1>Edite sua foto:</h1>
+    <canvas id="editorCanvas" width="300" height="300"></canvas>
+    <input type="range" id="zoomRange" min="0.5" max="2" step="0.01" value="1">
     <button id="confirmCrop">Usar esta foto</button>
+    <button id="cancelCrop">Cancelar</button>
   </div>
 
   <script>
+    const previewFoto = document.getElementById('previewFoto');
     const inputFoto = document.getElementById('inputFoto');
-    const fotoPreview = document.getElementById('fotoPreview');
-    const editorContainer = document.getElementById('editorContainer');
-    const editorCanvas = document.getElementById('editorCanvas');
+    const editorContainer = document.getElementById("editorContainer");
+    const editorCanvas = document.getElementById("editorCanvas");
+    const ctx = editorCanvas.getContext("2d");
+    const zoomRange = document.getElementById('zoomRange');
     const confirmCrop = document.getElementById('confirmCrop');
-    const ctx = editorCanvas.getContext('2d');
+    const cancelCrop = document.getElementById('cancelCrop');
 
     let img = new Image();
     let offsetX = 0, offsetY = 0;
-    let scale = 1;
-    let isDragging = false;
-    let startX = 0, startY = 0;
+    let startX, startY;
+    let dragging = false;
+    let zoom = 1;
 
-    inputFoto.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        img.src = event.target.result;
-        editorContainer.style.display = 'flex';
-      };
-      reader.readAsDataURL(file);
+    previewFoto.addEventListener('click', () => {
+      inputFoto.click();
     });
 
-    img.onload = function () {
-      const canvasSize = editorCanvas.width;
-      const scaleX = canvasSize / img.width;
-      const scaleY = canvasSize / img.height;
-      scale = Math.max(scaleX, scaleY);
-      offsetX = (img.width * scale - canvasSize) / 2;
-      offsetY = (img.height * scale - canvasSize) / 2;
-      drawImage();
-    };
+    inputFoto.addEventListener('change', () => {
+      const arquivo = inputFoto.files[0];
+      if (arquivo) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          img.src = e.target.result;
+          img.onload = () => {
+            offsetX = (editorCanvas.width - img.width) / 2;
+            offsetY = (editorCanvas.height - img.height) / 2;
+            zoom = 1;
+            zoomRange.value = 1;
+            editorContainer.style.display = "flex";
+            desenharImagem();
+          };
+        };
+        reader.readAsDataURL(arquivo);
+      }
+    });
 
-    function drawImage() {
+    zoomRange.addEventListener('input', function () {
+      zoom = parseFloat(this.value);
+      desenharImagem();
+    });
+
+    function desenharImagem() {
       ctx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
       ctx.save();
       ctx.beginPath();
       ctx.arc(editorCanvas.width / 2, editorCanvas.height / 2, editorCanvas.width / 2, 0, Math.PI * 2);
       ctx.closePath();
       ctx.clip();
-      ctx.drawImage(
-        img,
-        offsetX / scale,
-        offsetY / scale,
-        editorCanvas.width / scale,
-        editorCanvas.height / scale,
-        0,
-        0,
-        editorCanvas.width,
-        editorCanvas.height
-      );
+      const scaledWidth = img.width * zoom;
+      const scaledHeight = img.height * zoom;
+      ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
       ctx.restore();
     }
 
-    editorCanvas.addEventListener('mousedown', function (e) {
-      isDragging = true;
+    editorCanvas.addEventListener("mousedown", (e) => {
+      dragging = true;
       startX = e.offsetX;
       startY = e.offsetY;
     });
 
-    editorCanvas.addEventListener('mouseup', function () {
-      isDragging = false;
-    });
-
-    editorCanvas.addEventListener('mousemove', function (e) {
-      if (!isDragging) return;
-      const dx = e.offsetX - startX;
-      const dy = e.offsetY - startY;
-      offsetX -= dx;
-      offsetY -= dy;
-      offsetX = Math.max(0, Math.min(offsetX, img.width * scale - editorCanvas.width));
-      offsetY = Math.max(0, Math.min(offsetY, img.height * scale - editorCanvas.height));
-      startX = e.offsetX;
-      startY = e.offsetY;
-      drawImage();
-    });
-
-    confirmCrop.addEventListener('click', function () {
-      const croppedData = editorCanvas.toDataURL('image/png');
-      fotoPreview.src = croppedData;
-      editorContainer.style.display = 'none';
-    });
-
-    // Registrar com fetch para o backend
-    document.getElementById('btnRegistrar').addEventListener('click', async () => {
-      const email = document.getElementById('email').value.trim();
-      const nome = document.getElementById('nome').value.trim();
-      const senha1 = document.getElementById('senha1').value;
-      const senha2 = document.getElementById('senha2').value;
-      const descricao = document.getElementById('userDescription').value.trim();
-      const foto = fotoPreview.src;
-
-      if (!email || !nome || !senha1 || !senha2) {
-        alert('Por favor, preencha todos os campos obrigatórios!');
-        return;
-      }
-      if (senha1 !== senha2) {
-        alert('As senhas não coincidem!');
-        return;
-      }
-      if (!foto || foto === '') {
-        alert('Por favor, envie uma foto!');
-        return;
-      }
-
-      try {
-        const response = await fetch('http://localhost:3000/api/usuarios', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, nome, senha: senha1, foto, descricao })
-        });
-        const data = await response.json();
-        if (response.ok) {
-          alert('Usuário registrado com sucesso!');
-          window.location.href = 'login.html'; // ou onde quiser redirecionar
-        } else {
-          alert('Erro: ' + (data.error || 'Não foi possível registrar'));
-        }
-      } catch (error) {
-        alert('Erro ao conectar com o servidor: ' + error.message);
+    editorCanvas.addEventListener("mousemove", (e) => {
+      if (dragging) {
+        let dx = e.offsetX - startX;
+        let dy = e.offsetY - startY;
+        offsetX += dx;
+        offsetY += dy;
+        startX = e.offsetX;
+        startY = e.offsetY;
+        desenharImagem();
       }
     });
 
-    // Toggle mostrar/esconder senha
+    editorCanvas.addEventListener("mouseup", () => {
+      dragging = false;
+    });
+
+    confirmCrop.addEventListener('click', () => {
+      const dataURL = editorCanvas.toDataURL();
+      previewFoto.src = dataURL;
+      editorContainer.style.display = "none";
+    });
+
+    cancelCrop.addEventListener('click', () => {
+      // Fecha o modal sem salvar alterações
+      editorContainer.style.display = "none";
+    });
+
     document.querySelectorAll('.toggleSenha').forEach(toggle => {
       toggle.addEventListener('click', () => {
         const input = toggle.previousElementSibling;
@@ -254,6 +258,57 @@
           input.type = 'password';
           toggle.querySelector('ion-icon').name = 'eye-outline';
         }
+      });
+    });
+
+    document.getElementById("btnRegistrar").addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim();
+      const nome = document.getElementById("nome").value.trim();
+      const senha1 = document.getElementById("senha1").value;
+      const senha2 = document.getElementById("senha2").value;
+      const foto = previewFoto.src;
+
+      if (!email || !nome || !senha1 || !senha2) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+      }
+
+      if (senha1 !== senha2) {
+        alert('As senhas não coincidem!');
+        return;
+      }
+
+      if (!foto || foto.endsWith('Profile-PNG-Free-Image.png')) {
+        alert('Por favor, envie e confirme a sua foto!');
+        return;
+      }
+
+      const usuario = {
+        email,
+        nome,
+        senha: senha1,
+        foto
+      };
+
+      fetch("http://localhost:3000/api/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(usuario),
+      })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((data) => {
+            throw new Error(data.error || "Erro ao registrar usuário");
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        alert(data.message);
+        window.location.href = "User.html";
+      })
+      .catch((error) => {
+        alert("Erro: " + error.message);
       });
     });
   </script>
