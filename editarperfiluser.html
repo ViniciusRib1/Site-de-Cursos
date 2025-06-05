@@ -2,429 +2,441 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cursos legais - Editar Perfil</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="icon curso.png" type="image/x-icon">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos legais - Editar Perfil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icon curso.png" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
 
-    .Registrar {
-      text-align: center;
-    }
+        .Registrar {
+            text-align: center;
+        }
 
-    .fotoreg img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      background-color: white;
-    }
+        .fotoreg img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background-color: white;
+        }
 
-    .fotoreg img:hover {
-      transform: scale(1.05);
-    }
+        .fotoreg img:hover {
+            transform: scale(1.05);
+        }
 
-    .inputlog {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 10px 0;
-    }
+        .inputlog {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
 
-    .itensReg input {
-      padding: 8px;
-      text-align: left;
-      width: 200px;
-    }
+        .itensReg input {
+            padding: 8px;
+            text-align: left;
+            width: 200px;
+        }
 
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
 
-    button {
-      margin: 20px auto;
-      width: 300px;
-      height: 50px;
-      background-color: rgb(0, 224, 253);
-      color: #fff;
-      border-radius: 5px;
-      border: none;
-      font-size: 20px;
-      padding: 10px;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
+        button {
+            margin: 20px auto;
+            width: 300px;
+            height: 50px;
+            background-color: rgb(0, 224, 253);
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            font-size: 20px;
+            padding: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background-color: #000;
-      color: rgb(0, 224, 253);
-      border: rgb(0, 224, 253) solid 2px;
-    }
+        button:hover {
+            background-color: #000;
+            color: rgb(0, 224, 253);
+            border: rgb(0, 224, 253) solid 2px;
+        }
 
-    .obs {
-      margin-top: 50px;
-      font-size: 14px;
-    }
+        .obs {
+            margin-top: 50px;
+            font-size: 14px;
+        }
 
-    /* Modal Editor de Imagem */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(5px);
-      background-color: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-    }
+        /* Modal Editor de Imagem */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
 
-    .modal-content {
-      background-color: #000;
-      padding: 30px;
-      border-radius: 20px;
-      border: 2px solid rgb(0, 224, 253);
-      box-shadow: 0 0 20px rgba(0, 224, 253, 0.5);
-      text-align: center;
-      width: 90%;
-      max-width: 500px;
-      color: white;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .modal-content {
+            background-color: #000;
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgb(0, 224, 253);
+            box-shadow: 0 0 20px rgba(0, 224, 253, 0.5);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .modal-content h2 {
-      margin-bottom: 20px;
-      color: rgb(0, 224, 253);
-      font-size: 24px;
-    }
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: rgb(0, 224, 253);
+            font-size: 24px;
+        }
 
-    #editorCanvas {
-      border-radius: 50%;
-      background-color: #222;
-      border: 2px solid rgb(0, 224, 253);
-      cursor: grab;
-    }
+        #editorCanvas {
+            border-radius: 50%;
+            background-color: #222;
+            border: 2px solid rgb(0, 224, 253);
+            cursor: grab;
+        }
 
-    .zoom-control {
-      margin-top: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: white;
-    }
+        .zoom-control {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
 
-    .zoom-control label {
-      font-weight: bold;
-      color: rgb(0, 224, 253);
-    }
+        .zoom-control label {
+            font-weight: bold;
+            color: rgb(0, 224, 253);
+        }
 
-    .zoom-control input[type="range"] {
-      width: 150px;
-      accent-color: rgb(0, 224, 253);
-    }
+        .zoom-control input[type="range"] {
+            width: 150px;
+            accent-color: rgb(0, 224, 253);
+        }
 
-    .modal-content button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: rgb(0, 224, 253);
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgb(0, 224, 253);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    .modal-content button:hover {
-      background-color: #000;
-      color: rgb(0, 224, 253);
-      border: 2px solid rgb(0, 224, 253);
-    }
+        .modal-content button:hover {
+            background-color: #000;
+            color: rgb(0, 224, 253);
+            border: 2px solid rgb(0, 224, 253);
+        }
 
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 28px;
-      font-weight: bold;
-      color: rgb(0, 224, 253);
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(0, 224, 253);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-    .close:hover {
-      transform: rotate(90deg);
-    }
-  </style>
+        .close:hover {
+            transform: rotate(90deg);
+        }
+    </style>
 </head>
 
 <body>
 
-  <header id="cabecalho">
-    <a href="User.html" class="logo"> Cursos <strong><span style="color: rgb(0, 224, 253);">Legais</span></strong></a>
-    <div class="menulinks">
-      <nav>
-        <a href="UserMatricula.html"><ion-icon name="reader-outline"></ion-icon> Matrícula</a>
-        <a href="Usercurso.html"><ion-icon name="school-outline"></ion-icon>Cursos</a>
-        <a href="Usercertificado.html"><ion-icon name="document-text-outline"></ion-icon> Certificado</a>
-      </nav>
-      <p id="not"><ion-icon name="notifications-outline" id="b"></ion-icon></p>
-    </div>
-    <div class="perfil">
-      <div class="foto">
-        <img id="fotoPerfil" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
-      </div>
-      <ion-icon name="chevron-down-outline" id="icon1" style="display: none; font-size: 25px; padding-left: 10px; cursor: pointer;" onclick="fecharConf()"></ion-icon>
-      <ion-icon name="chevron-back-outline" style="font-size: 25px; padding-left: 10px; cursor: pointer;" id="icon2" onclick="abrirConf()"></ion-icon>
-      <a href="User.html" id="nomeUsuario"> Perfil</a>
-    </div>
-  </header>
+    <header id="cabecalho">
+        <a href="User.html" class="logo"> Cursos <strong><span style="color: rgb(0, 224, 253);">Legais</span></strong></a>
+        <div class="menulinks">
+            <nav>
+                <a href="UserMatricula.html"><ion-icon name="reader-outline"></ion-icon> Matrícula</a>
+                <a href="Usercurso.html"><ion-icon name="school-outline"></ion-icon>Cursos</a>
+                <a href="Usercertificado.html"><ion-icon name="document-text-outline"></ion-icon> Certificado</a>
+            </nav>
+            <p id="not"><ion-icon name="notifications-outline" id="b"></ion-icon></p>
+        </div>
+        <div class="perfil">
+            <div class="foto">
+                <img id="fotoPerfil" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
+            </div>
+            <ion-icon name="chevron-down-outline" id="icon1" style="display: none; font-size: 25px; padding-left: 10px; cursor: pointer;" onclick="fecharConf()"></ion-icon>
+            <ion-icon name="chevron-back-outline" style="font-size: 25px; padding-left: 10px; cursor: pointer;" id="icon2" onclick="abrirConf()"></ion-icon>
+            <a href="User.html" id="nomeUsuario"> Perfil</a>
+        </div>
+    </header>
 
-  <div id="configs">
-    <h1>Configurações:</h1>
-    <nav>
-      <a href=""><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
-    </nav>
-    <nav>
-      <a href=""><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
-    </nav>
-    <nav>
-      <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
-    </nav>
-  </div>
-
-  <h1 id="titulo"><strong>Editar Perfil</strong></h1>
-
-  <div class="Registrar">
-    <h1>Editar Perfil</h1>
-    <div class="fotoreg">
-      <img id="previewFoto" src="Profile-PNG-Free-Image.png" alt="Sua foto">
+    <div id="configs">
+        <h1>Menu:</h1>
+        <a href="User.html"><ion-icon name="person-outline"></ion-icon>Seu perfil</a>
+        <a href="editarperfiluser.html"><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
+        <a href="#"><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
+        <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
     </div>
 
-    <div class="itensReg">
-      <h2>Coloque sua foto:</h2>
-      <input type="file" id="inputFoto" accept="image/*">
+    <h1 id="titulo"><strong>Editar Perfil</strong></h1>
 
-      <h2>Altere o seu nome:</h2>
-      <div class="inputlog">
-        <ion-icon name="person-outline"></ion-icon>
-        <input type="text" id="inputNome" placeholder="Coloque o seu nome">
-      </div>
+    <div class="Registrar">
+        <h1>Editar Perfil</h1>
+        <div class="fotoreg">
+            <img id="previewFoto" src="Profile-PNG-Free-Image.png" alt="Sua foto">
+        </div>
 
-      <button id="btnConfirmar">Confirmar</button>
-      <button onclick="window.location.href='User.html'">Cancelar</button>
+        <div class="itensReg">
+            <h2>Coloque sua foto:</h2>
+            <input type="file" id="inputFoto" accept="image/*">
+
+            <h2>Altere o seu nome:</h2>
+            <div class="inputlog">
+                <ion-icon name="person-outline"></ion-icon>
+                <input type="text" id="inputNome" placeholder="Coloque o seu nome">
+            </div>
+
+            <button id="btnConfirmar">Confirmar</button>
+            <button onclick="window.location.href='User.html'">Cancelar</button>
+        </div>
     </div>
-  </div>
 
-  <div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
+    <div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
 
-  <div id="editorModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharEditor()">&times;</span>
-      <h2>Editar Foto</h2>
-      <canvas id="editorCanvas" width="400" height="400"></canvas>
-      <div class="zoom-control">
-        <label for="zoomRange">Zoom:</label>
-        <input type="range" id="zoomRange" min="0.5" max="3" step="0.1" value="1">
-      </div>
-      <br>
-      <button onclick="confirmarCorte()">Aplicar</button>
+    <div id="editorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharEditor()">&times;</span>
+            <h2>Editar Foto</h2>
+            <canvas id="editorCanvas" width="400" height="400"></canvas>
+            <div class="zoom-control">
+                <label for="zoomRange">Zoom:</label>
+                <input type="range" id="zoomRange" min="0.5" max="3" step="0.1" value="1">
+            </div>
+            <br>
+            <button onclick="confirmarCorte()">Aplicar</button>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function abrirConf() {
-      document.getElementById("configs").classList.add("active");
-      document.getElementById("icon1").style.display = "block";
-      document.getElementById("icon2").style.display = "none";
-    }
+    <script>
+        function abrirConf() {
+            document.getElementById("configs").classList.add("active");
+            document.getElementById("icon1").style.display = "block";
+            document.getElementById("icon2").style.display = "none";
+        }
 
-    function fecharConf() {
-      document.getElementById("configs").classList.remove("active");
-      document.getElementById("icon1").style.display = "none";
-      document.getElementById("icon2").style.display = "block";
-    }
+        function fecharConf() {
+            document.getElementById("configs").classList.remove("active");
+            document.getElementById("icon1").style.display = "none";
+            document.getElementById("icon2").style.display = "block";
+        }
 
-    const previewFoto = document.getElementById('previewFoto');
-    const inputFoto = document.getElementById('inputFoto');
-    const fotoPerfil = document.getElementById('fotoPerfil');
+        const previewFoto = document.getElementById('previewFoto');
+        const inputFoto = document.getElementById('inputFoto');
+        const fotoPerfil = document.getElementById('fotoPerfil');
 
-    let editorModal = document.getElementById("editorModal");
-    let editorCanvas = document.getElementById("editorCanvas");
-    let ctx = editorCanvas.getContext("2d");
-    let img = new Image();
-    let offsetX = 0, offsetY = 0;
-    let dragging = false;
-    let startX, startY;
-    let zoom = 1;
+        let editorModal = document.getElementById("editorModal");
+        let editorCanvas = document.getElementById("editorCanvas");
+        let ctx = editorCanvas.getContext("2d");
+        let img = new Image();
+        let offsetX = 0, offsetY = 0;
+        let dragging = false;
+        let startX, startY;
+        let zoom = 1;
 
-    const zoomRange = document.getElementById('zoomRange');
-    zoomRange.addEventListener('input', function () {
-      zoom = parseFloat(this.value);
-      desenharImagem();
-    });
-
-    previewFoto.addEventListener('click', () => {
-      inputFoto.click();
-    });
-
-    inputFoto.addEventListener('change', () => {
-      const arquivo = inputFoto.files[0];
-      if (arquivo) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          img.src = e.target.result;
-          img.onload = () => {
-            offsetX = 0;
-            offsetY = 0;
-            zoom = 1;
-            zoomRange.value = 1;
-            abrirEditor();
+        const zoomRange = document.getElementById('zoomRange');
+        zoomRange.addEventListener('input', function () {
+            zoom = parseFloat(this.value);
             desenharImagem();
-          };
-        };
-        reader.readAsDataURL(arquivo);
-      }
-    });
-
-    function abrirEditor() {
-      editorModal.style.display = "flex";
-    }
-
-    function fecharEditor() {
-      editorModal.style.display = "none";
-    }
-
-    function desenharImagem() {
-      ctx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(200, 200, 200, 0, Math.PI * 2);
-      ctx.closePath();
-      ctx.clip();
-      const scaledWidth = img.width * zoom;
-      const scaledHeight = img.height * zoom;
-      ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
-      ctx.restore();
-    }
-
-    editorCanvas.addEventListener("mousedown", (e) => {
-      dragging = true;
-      startX = e.offsetX;
-      startY = e.offsetY;
-    });
-
-    editorCanvas.addEventListener("mousemove", (e) => {
-      if (dragging) {
-        let dx = e.offsetX - startX;
-        let dy = e.offsetY - startY;
-        offsetX += dx;
-        offsetY += dy;
-        startX = e.offsetX;
-        startY = e.offsetY;
-        desenharImagem();
-      }
-    });
-
-    editorCanvas.addEventListener("mouseup", () => {
-      dragging = false;
-    });
-
-    function confirmarCorte() {
-      const dataURL = editorCanvas.toDataURL();
-      previewFoto.src = dataURL;
-      fotoPerfil.src = dataURL;
-      fecharEditor();
-    }
-
-    // Ao carregar a página, preenche campos com dados do localStorage
-    window.addEventListener("DOMContentLoaded", () => {
-      const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-      if (usuario) {
-        // Preencher foto e nome
-        fotoPerfil.src = usuario.foto || "Profile-PNG-Free-Image.png";
-        previewFoto.src = usuario.foto || "Profile-PNG-Free-Image.png";
-        document.getElementById("nomeUsuario").textContent = usuario.nome;
-        document.getElementById("inputNome").value = usuario.nome || "";
-        // Guardar id e descricao para envio
-        window.usuarioId = usuario.id;
-        window.usuarioDescricao = usuario.descricao || "";
-      }
-    });
-
-    document.getElementById("btnConfirmar").addEventListener("click", () => {
-      const nome = document.getElementById("inputNome").value.trim();
-      const foto = previewFoto.src;
-      const descricao = window.usuarioDescricao; // mantém descriçao atual
-
-      if (!nome) {
-        alert("Por favor, insira um nome.");
-        return;
-      }
-      if (!foto || foto.endsWith("Profile-PNG-Free-Image.png")) {
-        alert("Por favor, envie e confirme a sua foto!");
-        return;
-      }
-
-      // Monta objeto para enviar
-      const usuarioAtualizado = {
-        nome: nome,
-        foto: foto,
-        descricao: descricao
-      };
-
-      // Faz PUT para /api/usuarios/:id
-      fetch(`http://localhost:3000/api/usuarios/${window.usuarioId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(usuarioAtualizado),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return response.json().then((data) => {
-              throw new Error(data.error || "Erro ao atualizar perfil");
-            });
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Atualiza localStorage
-          const usuario = {
-            id: window.usuarioId,
-            email: JSON.parse(localStorage.getItem("usuarioLogado")).email,
-            nome: nome,
-            foto: foto,
-            descricao: descricao
-          };
-          localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-          alert(data.message);
-          window.location.href = "User.html";
-        })
-        .catch((error) => {
-          alert("Erro: " + error.message);
         });
-    });
-  </script>
 
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        previewFoto.addEventListener('click', () => {
+            inputFoto.click();
+        });
+
+        inputFoto.addEventListener('change', () => {
+            const arquivo = inputFoto.files[0];
+            if (arquivo) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                    img.onload = () => {
+                        offsetX = 0;
+                        offsetY = 0;
+                        zoom = 1;
+                        zoomRange.value = 1;
+                        abrirEditor();
+                        desenharImagem();
+                    };
+                };
+                reader.readAsDataURL(arquivo);
+            }
+        });
+
+        function abrirEditor() {
+            editorModal.style.display = "flex";
+        }
+
+        function fecharEditor() {
+            editorModal.style.display = "none";
+        }
+
+        function desenharImagem() {
+            ctx.clearRect(0, 0, editorCanvas.width, editorCanvas.height);
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(200, 200, 200, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.clip();
+            const scaledWidth = img.width * zoom;
+            const scaledHeight = img.height * zoom;
+            ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+            ctx.restore();
+        }
+
+        editorCanvas.addEventListener("mousedown", (e) => {
+            dragging = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+        });
+
+        editorCanvas.addEventListener("mousemove", (e) => {
+            if (dragging) {
+                let dx = e.offsetX - startX;
+                let dy = e.offsetY - startY;
+                offsetX += dx;
+                offsetY += dy;
+                startX = e.offsetX;
+                startY = e.offsetY;
+                desenharImagem();
+            }
+        });
+
+        editorCanvas.addEventListener("mouseup", () => {
+            dragging = false;
+        });
+
+        function confirmarCorte() {
+            const dataURL = editorCanvas.toDataURL();
+            previewFoto.src = dataURL;
+            fotoPerfil.src = dataURL; // Atualiza a foto no cabeçalho
+            fecharEditor();
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+            if (usuario) {
+                fotoPerfil.src = usuario.foto || "Profile-PNG-Free-Image.png";
+                previewFoto.src = usuario.foto || "Profile-PNG-Free-Image.png";
+                document.getElementById("nomeUsuario").textContent = usuario.nome;
+                document.getElementById("inputNome").value = usuario.nome || "";
+            } else {
+                console.warn("Nenhum usuário logado encontrado no localStorage. Redirecionando.");
+                alert("Nenhum usuário logado. Por favor, faça login.");
+                window.location.href = "login.html"; // Ajuste para a sua página de login
+            }
+        });
+
+        document.getElementById("btnConfirmar").addEventListener("click", () => {
+            const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+            if (!usuarioLogado || !usuarioLogado.id || !usuarioLogado.email) {
+                console.error("Erro: Dados do usuário incompletos no localStorage.", usuarioLogado);
+                alert("Erro: Dados do usuário não encontrados ou incompletos. Por favor, faça login novamente.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const userId = usuarioLogado.id;
+            const userEmail = usuarioLogado.email; // Pegamos o email também para o backend
+            const nome = document.getElementById("inputNome").value.trim();
+            const foto = previewFoto.src;
+            const descricao = usuarioLogado.descricao || "";
+
+            console.log("Frontend: Preparando para enviar PUT.");
+            console.log("Frontend: ID do usuário:", userId, "Email:", userEmail);
+            console.log("Frontend: Nome a ser enviado:", nome);
+            console.log("Frontend: Foto (início):", foto.substring(0, 100) + '...');
+            console.log("Frontend: Descrição:", descricao);
+
+
+            if (!nome) {
+                alert("Por favor, insira um nome.");
+                return;
+            }
+            if (foto.endsWith("Profile-PNG-Free-Image.png")) {
+                alert("Por favor, envie e confirme a sua foto!");
+                return;
+            }
+
+            const usuarioAtualizado = {
+                nome: nome,
+                foto: foto,
+                descricao: descricao,
+                // Incluímos o email aqui para uma possível verificação no backend
+                email: userEmail
+            };
+
+            fetch(`http://localhost:3000/api/usuarios/${userId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(usuarioAtualizado),
+            })
+                .then((response) => {
+                    console.log("Frontend: Resposta recebida. Status:", response.status);
+                    if (!response.ok) {
+                        return response.json().then((data) => {
+                            console.error("Frontend: Erro recebido do servidor:", data.error);
+                            throw new Error(data.error || "Erro desconhecido ao atualizar perfil.");
+                        });
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log("Frontend: Sucesso! Dados atualizados:", data);
+                    // Atualiza o localStorage com os novos dados do usuário
+                    usuarioLogado.nome = nome;
+                    usuarioLogado.foto = foto;
+                    usuarioLogado.descricao = descricao;
+                    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+
+                    alert(data.message);
+                    window.location.href = "User.html";
+                })
+                .catch((error) => {
+                    console.error("Frontend: Erro na requisição PUT:", error);
+                    alert("Erro: " + error.message + ". Verifique o console do navegador e do servidor para mais detalhes.");
+                });
+        });
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </body>
 

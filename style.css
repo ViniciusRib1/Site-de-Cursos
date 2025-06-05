@@ -5,36 +5,18 @@ body {
     color: white;
     font-family: 'Rubik', sans-serif;
 }
+
 .menulinks a {
     position: relative;
     display: inline-flex;
     color: white;
-    padding: 30px;
+    padding: 30px; /* Mantém o padding original para os links do menu principal */
     text-decoration: none;
     font-size: 26px; 
     transition: all 0.3s;
 }
-.menulinks {
-    display: flex;
-    align-items: center;
-    gap: 10px; 
-    padding: 20px;
-    margin-left: auto; 
-}
-#select {
-    color: white;
-    text-decoration: none;
-    position: relative;
-  }
-#select::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 5px; 
-    width: 100%;
-    height: 2px;
-    background-color: white;
-}
+
+/* Linha animada para links do menu */
 .menulinks a::before {
     content: "";
     position: absolute;
@@ -51,6 +33,40 @@ body {
 .menulinks a:hover::before {
     transform: scaleX(1);         
 }
+
+/* Garante que o ícone de notificação não tenha a animação de linha */
+#not::before {
+    content: none !important; /* Remove o conteúdo ::before */
+}
+
+#not:hover {
+    color: inherit; /* Previne a mudança de cor ao passar o mouse se não for desejado */
+}
+
+.menulinks {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    padding: 20px;
+    margin-left: auto; 
+}
+
+#select {
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+#select::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px; 
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -58,6 +74,7 @@ nav {
     color: white;
     width: 100%;
 }
+
 header {
     background-color: black;
     display: flex;
@@ -65,15 +82,21 @@ header {
     width: 100%;
     height: 80px;
 }
+
 .obs {
     width: 100%;
+    height: 40px;
     position: absolute;
-    top: 400%;
+    bottom: 0; /* Posicionado no final da página */
     left: 0%;
+    top: 200%;
     display: flex;
     justify-content: center;
     background-color: black;
+    padding: 20px 0; /* Adicionado padding para melhor visualização */
+    margin-top: 50px; /* Espaço para não ficar colado ao conteúdo */
 }
+
 .foto {
     width: 40px;
     height: 40px;
@@ -84,18 +107,22 @@ header {
     justify-content: center;
     padding: 4px; 
 }
+
 .foto img {
     width: 50px;
     height: 50px;
 }
+
 .perfil {
     margin-left: 10px;
     display: flex;
     align-items: center;
 }
+
 .login {
     display: flex;
 }
+
 .Informações {
     padding: 20px;
     margin: 100px;
@@ -110,6 +137,7 @@ header {
     border-radius: 20px;
     box-shadow: 0 0 15px #00e0fd;
 }
+
 .Informações h1 {
     border-bottom: solid 2px white;
     width: 800px;
@@ -117,13 +145,15 @@ header {
     text-align: center;
     margin: auto;
 }
+
 .logo {
     font-size: 50px;
     color: white;
     text-decoration: none;
     padding: 20px;
-    text-shadow:  0px 10px 15px #00e0fd;
+    text-shadow: 0px 10px 15px #00e0fd;
 }
+
 .matricula {
     background-color: black;
     width: 600px;
@@ -135,6 +165,7 @@ header {
     padding: 20px;
     box-sizing: border-box;
 }
+
 .curso {
     background-color: black;
     width: 600px;
@@ -146,21 +177,25 @@ header {
     padding: 20px;
     box-sizing: border-box;
 }
+
 .matricula h1 {
     border-bottom: solid 2px white;
     width: 500px;
     margin: auto;
     padding: 10px;
 }
+
 li {
     display: flex;
     flex-direction: initial;
     padding: 20px;
 }
+
 .contma {
     text-align: left;
     padding: 20px;
 }
+
 .matricula button {
     margin: 10px auto;
     width: 500px;
@@ -174,6 +209,7 @@ li {
     padding: 10px;
     transition: all 0.5s;
 }
+
 .curso button {
     margin: 10px auto;
     width: 500px;
@@ -187,9 +223,11 @@ li {
     padding: 10px;
     transition: all 0.5s;
 }
+
 .matricula h3 {
     margin: 60px;
 }
+
 .curso button:hover {
     margin: 10px auto;
     width: 500px;
@@ -204,6 +242,7 @@ li {
     cursor: pointer;
     border: solid rgb(0, 224, 253) 2px;
 }
+
 .matricula button:hover {
     margin: 10px auto;
     width: 500px;
@@ -219,18 +258,21 @@ li {
     cursor: pointer;
     border: solid rgb(0, 224, 253) 2px;
 }
+
 .matriculas {
     display: flex;
     flex-direction: row;
     margin: auto;
     justify-content: center;
 }
+
 .cursos {
     display: flex;
     flex-wrap: wrap; 
     gap: 10px;
     justify-content: center; 
 }
+
 .Certificado {
     display: flex;
     flex-direction: column;
@@ -238,6 +280,7 @@ li {
     margin: auto 400px;
     text-align: left;
 }
+
 .Certificado img {
     width: 1000px;
     margin: auto;
@@ -245,6 +288,7 @@ li {
     box-shadow: 0 0 15px #00e0fd;
 
 }
+
 h1#titulo {
     text-align: center;
     border-bottom: solid white 2px;
@@ -255,6 +299,7 @@ h1#titulo {
     margin-bottom: 40px;
     font-size: 50px;
 }
+
 .Registrar {
     display: flex;
     flex-direction: column;
@@ -267,18 +312,19 @@ h1#titulo {
     align-items: center;
     box-shadow: 0 0 15px #00e0fd;
 }
+
 .Registrar h1 {
     border-bottom: 2px solid white;
     width: 1000px;
     padding: 20px;
 }
+
 .Registrar h2 {
   text-align: left;
   margin-right: auto;
-  margin-left: 100px; /* espaçamento abaixo de cada H2 */
-  line-height: 4;    /* espaçamento entre linhas do texto, se houver quebra */
+  margin-left: 100px; 
+  line-height: 4; 
 }
-
 
 .itensReg {
     text-align: left;
@@ -287,12 +333,14 @@ h1#titulo {
     padding: 20px;
     margin: 20px;
 }
+
 .fotoreg {
     background-color: white;
     width: 2000px;
     height: 2000px;
     border-radius: 50%;
 }
+
 .inputlog {
     display: flex;
     flex-direction: row;
@@ -308,6 +356,7 @@ h1#titulo {
     margin: 10px;
     font-size: 40px;
 }
+
 .inputlog input {
     background-color: black;
     width: 600px;
@@ -319,6 +368,7 @@ h1#titulo {
     font-size: 30px;
     padding: 10px;
 }
+
 .inputlog input::placeholder {
     background-color: black;
     width: 600px;
@@ -331,10 +381,10 @@ h1#titulo {
     padding: 10px;
 }
 
-
 .itensReg input:focus {
     outline: none; 
 }
+
 .itensReg button {
     margin: 20px auto;
     width: 1000px;
@@ -349,6 +399,7 @@ h1#titulo {
     cursor: pointer;
     align-items: center;
 }
+
 .itensReg button:hover {
     margin: 20px auto;
     width: 1000px;
@@ -413,6 +464,7 @@ h1#titulo {
   border-radius: 50%;
   overflow: hidden;
 }
+
 #nomeUsuario {
     color: white;
     font-size: 20px;
@@ -420,54 +472,132 @@ h1#titulo {
     padding: 10px;
     margin-right: 20px;
 }
-p#not {
+
+/* Specific styles for notification icon - reverted to original padding */
+#not { 
     font-size: 30px;
-}
-p#not:hover {
+    display: inline-flex; /* Changed from flex to inline-flex to match .menulinks a */
     align-items: center;
     justify-content: center;
-    margin: auto;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 30px;
+    height: 100%;
+    width: auto; /* Allows width to adjust to padding */
+    padding: 30px; /* Reinstated original padding */
+    position: relative; /* Needed for absolute positioning of icon */
+    text-decoration: none; /* Remove sublinhado da tag 'a' */
+    color: white; /* Garante que a cor do ícone seja branca */
 }
-#configs {
-    position: fixed; /* sobrepõe e não ocupa espaço no fluxo do layout */
-    top: 100px; /* ajuste conforme sua necessidade */
-    right: 20px; /* distância da borda direita */
+
+#not ion-icon {
+    position: relative; /* Changed to relative to remove absolute positioning within #not */
+    top: auto;
+    left: auto;
+    transform: none; /* Remove transform that centered it previously */
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Notification panel container - no padding-top needed here */
+/* .notification-container é uma div que envolve o #not e #notific para controlar o posicionamento */
+.notification-container {
+    position: relative;
+    display: inline-block; /* Ocupa apenas o espaço necessário */
+    padding-top: 0; 
+    box-sizing: border-box;
+    /* Ajuste para alinhar com o padding dos outros itens do menu, se necessário */
+    margin-left: -20px; /* Compensa o padding de 30px de .menulinks a para o icone ficar mais perto */
+}
+
+
+/* Notification panel styling */
+#notific {
+    position: absolute;
+    /* ADJUSTED: Move notification panel further down, relative to its parent container */
+    top: 100%; /* Start exactly below the icon's natural flow */
+    margin-top: 15px; /* Add margin-top here to push it down from the icon */
+    right: 0;
+    width: 400px; 
+    height: auto;
+    padding: 30px; 
+    box-shadow: 0 0 15px rgb(0, 224, 253);
+    background-color: #000;
+    color: white;
+    font-size: small;
+    text-align: left;
+    overflow: hidden;
+    /* Removed margin: 0 to allow margin-top to work */
+    z-index: 100;
+
+    /* Animation properties - initial hidden state */
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
     
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaça o conteúdo dentro da notificação */
+}
+
+#notific.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+}
+
+/* **NOVO**: Animação para o conteúdo dentro de #notific */
+#notific h3, /* O h3 é o título "Notificações" */
+#notific p { /* O p é o texto das notificações */
+    opacity: 0;
+    transform: translateY(10px);
+    /* Adicione um pequeno delay para que o texto apareça depois que o painel desliza */
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s; 
+}
+
+#notific.active h3, 
+#notific.active p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#configs {
+    position: fixed; 
+    top: 100px; 
+    right: 20px; 
     opacity: 0;
     transform: translateY(-20px);
     pointer-events: none;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    
     box-shadow: 0 0 15px rgb(0, 224, 253);
     display: flex;
     flex-direction: column;
-    
     color: white;
     font-size: small;
     text-align: left;
     background-color: #000;
-    
     width: 400px; 
     height: auto;
     padding: 30px; 
     overflow: hidden;
     margin: 0;
-    
-    z-index: 999; /* garante que fique acima de outros elementos */
+    z-index: 999; 
 }
 
 .iconPer {
-    transition: transform 0.5s ease; /* Transição suave */
+    transition: transform 0.5s ease; 
     cursor: pointer; 
 }
 
-.iconPer a ~ #config-icon {
-    transform: rotate(180deg); 
+/* Ajustes para os ícones de chevron (setas) */
+.iconPer ion-icon[name="chevron-forward-outline"] {
+    transform: rotate(0deg); 
 }
 
+.iconPer ion-icon[name="chevron-down-outline"] {
+    transform: rotate(0deg); 
+}
 
 #configs.active {
     opacity: 1;
@@ -475,11 +605,12 @@ p#not:hover {
     pointer-events: auto;
 }
 
+/* Animação para o conteúdo dentro de #configs */
 #configs h1, 
 #configs a {
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.3s ease 0.5s, transform 0.3s ease 0.5s;
+    transition: opacity 0.3s ease 0.5s, transform 0.3s ease 0.5s; /* Mantém o delay do config */
 }
 
 #configs.active h1, 
@@ -495,7 +626,7 @@ p#not:hover {
     border-radius: 8px;
     background: rgba(0, 224, 253, 0.1); 
     transition: background 0.3s ease, transform 0.3s ease;
-    margin-top: 10px; /* espaço entre os links */
+    margin-top: 10px; 
     display: inline-block;
     font-size: 15px;
 }
@@ -504,6 +635,7 @@ p#not:hover {
     background: rgba(0, 224, 253, 0.3);
     transform: translateX(5px);
 }
+
 nav {
     display: flex;
     flex-direction: row;
@@ -516,12 +648,11 @@ nav::-webkit-scrollbar {
     height: 6px;
 }
 
-
-
 nav::-webkit-scrollbar-thumb {
     background-color: rgb(0, 224, 253);
     border-radius: 3px;
 }
+
 .Editar {
     display: flex;
     justify-content: center;
@@ -533,6 +664,7 @@ nav::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: #00e0fd 10px;
 }
+
 .itens {
     display: flex;
     flex-direction: column;
@@ -540,8 +672,9 @@ nav::-webkit-scrollbar-thumb {
     align-items: center;  
     margin: 10px auto;
     height: 100vh; 
-    padding: 10px;       
+    padding: 10px;        
 }
+
 .modal {
   display: none;
   position: fixed;
@@ -635,4 +768,55 @@ nav::-webkit-scrollbar-thumb {
 
 .close:hover {
   transform: rotate(90deg);
+}
+
+/* Home Page Specific Styles */
+.card-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #00e0fd;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px #00e0fd;
+    background-color: #000000;
+    color: white;
+}
+
+.card-perfil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card-perfil h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.card-perfil p {
+    font-size: 1em;
+    color: #ffffff;
+    text-align: center;
+}
+
+#editarDescricaoBtn {
+    margin-left: 10px;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #00e0fd;
+    background-color: #e0f7fb;
+    color: #007a8a;
+}
+
+#editarDescricaoBtn:hover {
+    background-color: #00e0fd;
+    color: #fff;
 }

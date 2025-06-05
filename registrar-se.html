@@ -39,7 +39,7 @@
       border: 1px solid #ccc;
       border-radius: 50%;
       display: block;
-      background: white;  /* fundo branco para o corte */
+      background: white;  
     }
 
     #zoomRange {
@@ -48,7 +48,7 @@
     }
 
     button {
-      width: 1000px;
+      width: 800px;
       height: 50px;
       margin-top: 10px;
       padding: 10px 20px;
@@ -66,10 +66,10 @@
       border: #00e0fd solid 2px;
     }
 
-    /* Botão de cancelar no modal com estilo próprio */
+   
     #cancelCrop {
-      width: 1000px;
-      height: 40px;
+      width: 800px;
+      height: 50px;
       background-color: #ff4d4d;
       margin-top: 10px;
     }
@@ -85,7 +85,7 @@
 
     h2 {
       text-align: left;
-      margin-bottom: 10px; /* espaçamento entre linhas */
+      margin-bottom: 10px; 
     }
   </style>
 </head>
@@ -283,33 +283,27 @@
         return;
       }
 
+      // Cria um objeto com os dados do usuário
       const usuario = {
+        id: Date.now().toString(), // Gera um ID único
         email,
         nome,
         senha: senha1,
-        foto
+        foto,
+        descricao: "", // Descrição vazia inicialmente
+        cursos: [] // Array vazio de cursos inicialmente
       };
 
-      fetch("http://localhost:3000/api/usuarios", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(usuario),
-      })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((data) => {
-            throw new Error(data.error || "Erro ao registrar usuário");
-          });
-        }
-        return response.json();
-      })
-      .then((data) => {
-        alert(data.message);
+      // Simula o registro salvando no localStorage
+      try {
+        // Salva o usuário no localStorage
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+        
+        // Redireciona para a página do usuário
         window.location.href = "User.html";
-      })
-      .catch((error) => {
-        alert("Erro: " + error.message);
-      });
+      } catch (error) {
+        alert("Erro ao registrar: " + error.message);
+      }
     });
   </script>
 
