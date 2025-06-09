@@ -4,6 +4,9 @@ body {
     background: linear-gradient(90deg,rgb(3, 188, 235) 0%, rgb(1, 127, 158) 50%, rgb(2, 102, 128) 100%, rgb(1, 40, 71) 100%);
     color: white;
     font-family: 'Rubik', sans-serif;
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    display: flex;
+    flex-direction: column; /* Stacks content vertically */
 }
 
 .menulinks a {
@@ -12,7 +15,7 @@ body {
     color: white;
     padding: 30px; /* Mantém o padding original para os links do menu principal */
     text-decoration: none;
-    font-size: 26px; 
+    font-size: 26px;
     transition: all 0.3s;
 }
 
@@ -25,13 +28,13 @@ body {
     width: 100%;
     height: 2px;
     background-color: white;
-    transform: scaleX(0);         
-    transform-origin: center; 
+    transform: scaleX(0);
+    transform-origin: center;
     transition: transform 0.3s ease;
 }
 
 .menulinks a:hover::before {
-    transform: scaleX(1);         
+    transform: scaleX(1);
 }
 
 /* Garante que o ícone de notificação não tenha a animação de linha */
@@ -46,9 +49,9 @@ body {
 .menulinks {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
     padding: 20px;
-    margin-left: auto; 
+    margin-left: auto;
 }
 
 #select {
@@ -61,7 +64,7 @@ body {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 5px; 
+    bottom: 5px;
     width: 100%;
     height: 2px;
     background-color: white;
@@ -78,7 +81,7 @@ nav {
 header {
     background-color: black;
     display: flex;
-    align-items: center; 
+    align-items: center;
     width: 100%;
     height: 80px;
 }
@@ -105,7 +108,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px; 
+    padding: 4px;
 }
 
 .foto img {
@@ -268,9 +271,9 @@ li {
 
 .cursos {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     gap: 10px;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .Certificado {
@@ -320,10 +323,10 @@ h1#titulo {
 }
 
 .Registrar h2 {
-  text-align: left;
-  margin-right: auto;
-  margin-left: 100px; 
-  line-height: 4; 
+    text-align: left;
+    margin-right: auto;
+    margin-left: 100px;
+    line-height: 4;
 }
 
 .itensReg {
@@ -348,10 +351,10 @@ h1#titulo {
     width: 900px;
     height: 20px;
     color: white;
-    border: none; 
-    border-bottom: 2px solid white; 
-    outline: none; 
-    border-radius: 0; 
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    border-radius: 0;
     padding: 20px;
     margin: 10px;
     font-size: 40px;
@@ -362,9 +365,9 @@ h1#titulo {
     width: 600px;
     height: 20px;
     color: white;
-    border: none; 
-    outline: none; 
-    border-radius: 0; 
+    border: none;
+    outline: none;
+    border-radius: 0;
     font-size: 30px;
     padding: 10px;
 }
@@ -374,15 +377,15 @@ h1#titulo {
     width: 600px;
     height: 20px;
     color: rgb(168, 167, 167);
-    border: none; 
-    outline: none; 
-    border-radius: 0; 
+    border: none;
+    outline: none;
+    border-radius: 0;
     font-size: 30px;
     padding: 10px;
 }
 
 .itensReg input:focus {
-    outline: none; 
+    outline: none;
 }
 
 .itensReg button {
@@ -417,52 +420,52 @@ h1#titulo {
 }
 
 .fotoreg {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 2px solid #000;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f0f0f0;
-  margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    margin-bottom: 20px;
 }
 
 .fotoreg img {
-  width: 1000px;
-  height: 1000px;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
+    width: 1000px;
+    height: 1000px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
 }
 
 #modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 #modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 400%;
-  text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 400%;
+    text-align: center;
 }
 
 #cropper-container {
-  width: 1000px;
-  height: 1000px;
-  margin: 0 auto 15px;
-  border-radius: 50%;
-  overflow: hidden;
+    width: 1000px;
+    height: 1000px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 #nomeUsuario {
@@ -474,7 +477,7 @@ h1#titulo {
 }
 
 /* Specific styles for notification icon - reverted to original padding */
-#not { 
+#not {
     font-size: 30px;
     display: inline-flex; /* Changed from flex to inline-flex to match .menulinks a */
     align-items: center;
@@ -501,7 +504,7 @@ h1#titulo {
 .notification-container {
     position: relative;
     display: inline-block; /* Ocupa apenas o espaço necessário */
-    padding-top: 0; 
+    padding-top: 0;
     box-sizing: border-box;
     /* Ajuste para alinhar com o padding dos outros itens do menu, se necessário */
     margin-left: -20px; /* Compensa o padding de 30px de .menulinks a para o icone ficar mais perto */
@@ -515,9 +518,9 @@ h1#titulo {
     top: 100%; /* Start exactly below the icon's natural flow */
     margin-top: 15px; /* Add margin-top here to push it down from the icon */
     right: 0;
-    width: 400px; 
+    width: 400px;
     height: auto;
-    padding: 30px; 
+    padding: 30px;
     box-shadow: 0 0 15px rgb(0, 224, 253);
     background-color: #000;
     color: white;
@@ -533,7 +536,7 @@ h1#titulo {
     pointer-events: none;
     visibility: hidden;
     transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
-    
+
     display: flex;
     flex-direction: column;
     gap: 10px; /* Espaça o conteúdo dentro da notificação */
@@ -552,10 +555,10 @@ h1#titulo {
     opacity: 0;
     transform: translateY(10px);
     /* Adicione um pequeno delay para que o texto apareça depois que o painel desliza */
-    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s; 
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
 }
 
-#notific.active h3, 
+#notific.active h3,
 #notific.active p {
     opacity: 1;
     transform: translateY(0);
@@ -563,9 +566,9 @@ h1#titulo {
 
 
 #configs {
-    position: fixed; 
-    top: 100px; 
-    right: 20px; 
+    position: fixed;
+    top: 100px;
+    right: 20px;
     opacity: 0;
     transform: translateY(-20px);
     pointer-events: none;
@@ -577,26 +580,26 @@ h1#titulo {
     font-size: small;
     text-align: left;
     background-color: #000;
-    width: 400px; 
+    width: 400px;
     height: auto;
-    padding: 30px; 
+    padding: 30px;
     overflow: hidden;
     margin: 0;
-    z-index: 999; 
+    z-index: 999;
 }
 
 .iconPer {
-    transition: transform 0.5s ease; 
-    cursor: pointer; 
+    transition: transform 0.5s ease;
+    cursor: pointer;
 }
 
 /* Ajustes para os ícones de chevron (setas) */
 .iconPer ion-icon[name="chevron-forward-outline"] {
-    transform: rotate(0deg); 
+    transform: rotate(0deg);
 }
 
 .iconPer ion-icon[name="chevron-down-outline"] {
-    transform: rotate(0deg); 
+    transform: rotate(0deg);
 }
 
 #configs.active {
@@ -606,27 +609,27 @@ h1#titulo {
 }
 
 /* Animação para o conteúdo dentro de #configs */
-#configs h1, 
+#configs h1,
 #configs a {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.3s ease 0.5s, transform 0.3s ease 0.5s; /* Mantém o delay do config */
 }
 
-#configs.active h1, 
+#configs.active h1,
 #configs.active a {
     opacity: 1;
     transform: translateY(0);
 }
 
 #configs a {
-    color: white; 
+    color: white;
     text-decoration: none;
-    padding: 20px 30px; 
+    padding: 20px 30px;
     border-radius: 8px;
-    background: rgba(0, 224, 253, 0.1); 
+    background: rgba(0, 224, 253, 0.1);
     transition: background 0.3s ease, transform 0.3s ease;
-    margin-top: 10px; 
+    margin-top: 10px;
     display: inline-block;
     font-size: 15px;
 }
@@ -639,9 +642,9 @@ h1#titulo {
 nav {
     display: flex;
     flex-direction: row;
-    gap: 15px; 
-    flex-wrap: nowrap; 
-    overflow-x: auto; 
+    gap: 15px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 nav::-webkit-scrollbar {
@@ -669,105 +672,105 @@ nav::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     margin: 10px auto;
-    height: 100vh; 
-    padding: 10px;        
+    height: 100vh;
+    padding: 10px;
 }
 
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-  background-color: #000;
-  padding: 30px;
-  border-radius: 20px;
-  border: 2px solid rgb(0, 224, 253);
-  box-shadow: 0 0 20px rgba(0, 224, 253, 0.5);
-  text-align: center;
-  width: 90%;
-  max-width: 500px;
-  color: white;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    background-color: #000;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid rgb(0, 224, 253);
+    box-shadow: 0 0 20px rgba(0, 224, 253, 0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;
-  color: rgb(0, 224, 253);
-  font-size: 24px;
+    margin-bottom: 20px;
+    color: rgb(0, 224, 253);
+    font-size: 24px;
 }
 
 #editorCanvas {
-  border-radius: 50%;
-  background-color: #222;
-  border: 2px solid rgb(0, 224, 253);
-  cursor: grab;
+    border-radius: 50%;
+    background-color: #222;
+    border: 2px solid rgb(0, 224, 253);
+    cursor: grab;
 }
 
 .zoom-control {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
 }
 
 .zoom-control label {
-  font-weight: bold;
-  color: rgb(0, 224, 253);
+    font-weight: bold;
+    color: rgb(0, 224, 253);
 }
 
 .zoom-control input[type="range"] {
-  width: 150px;
-  accent-color: rgb(0, 224, 253);
+    width: 150px;
+    accent-color: rgb(0, 224, 253);
 }
 
 .modal-content button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: rgb(0, 224, 253);
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgb(0, 224, 253);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .modal-content button:hover {
-  background-color: #000;
-  color: rgb(0, 224, 253);
-  border: 2px solid rgb(0, 224, 253);
+    background-color: #000;
+    color: rgb(0, 224, 253);
+    border: 2px solid rgb(0, 224, 253);
 }
 
 .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  font-weight: bold;
-  color: rgb(0, 224, 253);
-  cursor: pointer;
-  transition: transform 0.3s;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(0, 224, 253);
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
 .close:hover {
-  transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 /* Home Page Specific Styles */
@@ -819,4 +822,757 @@ nav::-webkit-scrollbar-thumb {
 #editarDescricaoBtn:hover {
     background-color: #00e0fd;
     color: #fff;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Mobile devices (up to 480px wide) */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column; /* Stack logo and menu/profile */
+        height: auto;
+        padding: 10px 0;
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .logo {
+        font-size: 28px;
+        padding: 10px 15px;
+        text-align: center;
+        width: 100%; /* Take full width */
+    }
+
+    .menulinks {
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: center; /* Center menu items */
+        width: 100%;
+        padding: 0;
+        margin-left: 0;
+        gap: 0; /* Remove gap when stacked */
+    }
+
+    .menulinks nav {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 0;
+    }
+
+    .menulinks a {
+        font-size: 18px;
+        padding: 8px 15px; /* Smaller padding */
+        width: 90%; /* Make links wider */
+        text-align: center;
+        justify-content: center; /* Center content of links */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
+    }
+
+    .menulinks a:last-of-type {
+        border-bottom: none; /* No separator for the last link */
+    }
+
+    .menulinks a::before {
+        display: none; /* Hide animated line for stacked menu */
+    }
+
+    #not {
+        font-size: 24px;
+        padding: 10px 15px;
+        width: 90%;
+        justify-content: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .notification-container {
+        width: 100%;
+        margin-left: 0;
+        display: flex;
+        justify-content: center; /* Center the notification icon */
+    }
+
+    #notific {
+        width: 90%; /* Max width for notification panel */
+        max-width: 300px; /* Limit max size */
+        padding: 15px;
+        margin-top: 10px;
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%) translateY(-10px);
+        right: auto; /* Remove right positioning */
+    }
+
+    #notific.active {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .perfil {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0; /* Center profile on its own line */
+    }
+
+    .foto {
+        width: 30px;
+        height: 30px;
+        padding: 2px;
+    }
+
+    .foto img {
+        width: 35px;
+        height: 35px;
+    }
+
+    #nomeUsuario {
+        font-size: 15px;
+        padding: 5px;
+        margin-right: 0;
+    }
+
+    #configs {
+        width: 90%;
+        max-width: 300px;
+        padding: 15px;
+        top: 60px; /* Adjust top for smaller header */
+        right: 50%;
+        transform: translateX(50%) translateY(-10px);
+    }
+
+    #configs.active {
+        transform: translateX(50%) translateY(0);
+    }
+
+    h1#titulo {
+        font-size: 32px;
+        width: 90%;
+        padding: 15px 0;
+        margin-bottom: 20px;
+    }
+
+    .Informações {
+        width: 95%;
+        margin: 20px auto;
+        font-size: 16px;
+        height: auto; /* Allow height to adjust */
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .Informações h1 {
+        width: 90%;
+        font-size: 1.5em;
+        padding-bottom: 8px;
+    }
+
+    .matriculas, .cursos {
+        flex-direction: column; /* Ensure stacking on mobile */
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 15px auto;
+    }
+
+    .matricula, .curso {
+        width: 95%;
+        margin: 0;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .matricula h1 {
+        width: 90%;
+        font-size: 1.2em;
+        padding: 8px;
+    }
+
+    .contma {
+        padding: 10px;
+    }
+
+    .matricula button, .curso button {
+        width: 90%;
+        height: 35px;
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .Registrar {
+        width: 95%;
+        height: auto; /* Allow height to adjust */
+        padding: 15px;
+        margin: 20px auto;
+        border-radius: 8px;
+    }
+
+    .Registrar h1 {
+        width: 90%;
+        padding: 15px;
+        font-size: 1.8em;
+    }
+
+    .Registrar h2 {
+        margin: 15px 0 0 5%;
+        line-height: 1.5;
+        font-size: 1.1em;
+        width: 90%;
+    }
+
+    .itensReg {
+        font-size: 18px;
+        padding: 5px;
+        margin: 5px;
+        width: 90%;
+    }
+
+    .fotoreg {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+    }
+
+    .inputlog {
+        width: 90%;
+        height: auto;
+        padding: 10px;
+        margin: 5px;
+        font-size: 1em;
+    }
+
+    .inputlog input {
+        width: calc(100% - 30px); /* Adjust for icon */
+        height: auto;
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .inputlog ion-icon { /* Style for icons in inputlog */
+        font-size: 18px;
+        margin-right: 8px;
+    }
+
+    .inputlog input::placeholder {
+        font-size: 0.9em;
+    }
+
+    .itensReg button {
+        width: 90%;
+        height: 45px;
+        font-size: 18px;
+        padding: 10px;
+        margin: 15px auto;
+    }
+
+    .Certificado {
+        margin: 20px auto;
+        width: 95%;
+    }
+
+    .Certificado img {
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-content {
+        padding: 15px;
+        width: 95%;
+        max-width: 300px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    #editorCanvas {
+        width: 200px;
+        height: 200px;
+    }
+
+    .zoom-control {
+        margin-top: 10px;
+    }
+
+    .zoom-control input[type="range"] {
+        width: 100px;
+    }
+
+    .modal-content button {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .close {
+        font-size: 20px;
+        top: 5px;
+        right: 8px;
+    }
+
+    .card-perfil {
+        width: 90%;
+        max-width: 250px;
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .card-perfil img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .card-perfil h2 {
+        font-size: 1.2em;
+    }
+
+    .card-perfil p {
+        font-size: 0.8em;
+    }
+
+    #editarDescricaoBtn {
+        font-size: 0.7em;
+        padding: 2px 5px;
+    }
+
+    .obs {
+        position: relative; /* Ensure it stays in normal flow for mobile */
+        top: auto; /* Remove fixed top position */
+        padding: 10px 0;
+        margin-top: auto; /* Push to bottom when body is flex column */
+        font-size: 11px;
+    }
+}
+
+/* Tablets and larger phones (481px to 768px wide) */
+@media (min-width: 481px) and (max-width: 768px) {
+    header {
+        height: 70px; /* Slightly shorter header */
+        padding: 5px 0;
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: space-between; /* Space out logo and menu/profile */
+    }
+
+    .logo {
+        font-size: 38px;
+        padding: 15px 20px;
+    }
+
+    .menulinks {
+        gap: 8px;
+        padding: 0 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end; /* Align to the right */
+        width: auto;
+    }
+
+    .menulinks nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .menulinks a {
+        font-size: 20px;
+        padding: 10px 18px;
+    }
+
+    #not {
+        font-size: 26px;
+        padding: 10px 18px;
+    }
+
+    .notification-container {
+        margin-left: 0;
+    }
+
+    #notific {
+        width: 320px;
+        padding: 20px;
+        margin-top: 12px;
+        right: 10px; /* Adjust right position for tablets */
+        left: auto; /* Remove left positioning */
+        transform: translateY(-15px);
+    }
+
+    #notific.active {
+        transform: translateY(0);
+    }
+
+    .perfil {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .foto {
+        width: 35px;
+        height: 35px;
+    }
+
+    .foto img {
+        width: 40px;
+        height: 40px;
+    }
+
+    #nomeUsuario {
+        font-size: 18px;
+    }
+
+    #configs {
+        width: 320px;
+        padding: 20px;
+        top: 75px; /* Adjust top for smaller header */
+        right: 15px;
+    }
+
+    h1#titulo {
+        font-size: 40px;
+        width: 90%;
+        padding: 20px 0;
+    }
+
+    .Informações {
+        width: 90%;
+        margin: 40px auto;
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    .Informações h1 {
+        width: 95%;
+        font-size: 1.8em;
+    }
+
+    .matriculas, .cursos {
+        flex-direction: row; /* Arrange in rows for tablets */
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin: 30px auto;
+    }
+
+    .matricula, .curso {
+        width: 47%; /* Two columns with some space */
+        max-width: 400px;
+        margin: 0; /* Reset margins */
+        padding: 20px;
+    }
+
+    .matricula h1 {
+        width: 90%;
+        font-size: 1.5em;
+    }
+
+    .matricula button, .curso button {
+        width: 90%;
+        max-width: 350px;
+        font-size: 18px;
+    }
+
+    .Registrar {
+        width: 90%;
+        max-width: 700px;
+        height: auto;
+        padding: 25px;
+        margin: 30px auto;
+    }
+
+    .Registrar h1 {
+        width: 90%;
+        font-size: 2.2em;
+    }
+
+    .Registrar h2 {
+        margin: 20px 0 0 8%;
+        font-size: 1.3em;
+        width: 90%;
+    }
+
+    .itensReg {
+        font-size: 24px;
+        padding: 15px;
+        margin: 15px;
+        width: 90%;
+    }
+
+    .fotoreg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .inputlog {
+        width: 90%;
+        max-width: 600px;
+        padding: 15px;
+        margin: 8px;
+        font-size: 1.2em;
+    }
+
+    .inputlog input {
+        font-size: 1.1em;
+    }
+
+    .itensReg button {
+        width: 90%;
+        max-width: 600px;
+        height: 50px;
+        font-size: 22px;
+        margin: 20px auto;
+    }
+
+    .Certificado {
+        margin: 30px auto;
+        width: 90%;
+    }
+
+    .Certificado img {
+        max-width: 800px;
+    }
+
+    .modal-content {
+        max-width: 400px;
+        padding: 25px;
+    }
+
+    #editorCanvas {
+        width: 300px;
+        height: 300px;
+    }
+
+    .card-perfil {
+        max-width: 280px;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .card-perfil img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .obs {
+        padding: 15px 0;
+        font-size: 13px;
+        position: relative; /* Maintain relative for tablets too */
+        top: auto;
+        margin-top: auto;
+    }
+}
+
+/* Desktops and larger screens (769px and up) */
+@media (min-width: 769px) {
+    /* No changes here, as the original CSS is already optimized for desktop */
+    /* The values here are just for demonstration that the original values are maintained. */
+    header {
+        height: 80px;
+        padding: 0;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        font-size: 50px;
+        padding: 20px;
+    }
+
+    .menulinks {
+        gap: 10px;
+        padding: 20px;
+        margin-left: auto;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .menulinks nav {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .menulinks a {
+        padding: 30px;
+        font-size: 26px;
+    }
+
+    #not {
+        font-size: 30px;
+        padding: 30px;
+    }
+
+    .notification-container {
+        margin-left: -20px; /* Original negative margin for desktop */
+    }
+
+    #notific {
+        width: 400px;
+        padding: 30px;
+        margin-top: 15px;
+        right: 0;
+        left: auto;
+        transform: translateY(-20px);
+    }
+
+    .perfil {
+        margin-left: 10px;
+        margin-right: initial;
+    }
+
+    .foto {
+        width: 40px;
+        height: 40px;
+    }
+
+    .foto img {
+        width: 50px;
+        height: 50px;
+    }
+
+    #nomeUsuario {
+        font-size: 20px;
+        padding: 10px;
+        margin-right: 20px;
+    }
+
+    #configs {
+        top: 100px;
+        right: 20px;
+        width: 400px;
+        padding: 30px;
+    }
+
+    h1#titulo {
+        font-size: 50px;
+        width: 1800px;
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .Informações {
+        padding: 20px;
+        margin: 100px auto;
+        font-size: 20px;
+        width: 800px;
+        height: 400px;
+    }
+
+    .Informações h1 {
+        width: 800px;
+    }
+
+    .matriculas, .cursos {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .matricula, .curso {
+        width: 600px;
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .matricula h1 {
+        width: 500px;
+    }
+
+    .matricula button, .curso button {
+        width: 500px;
+        height: 40px;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .Registrar {
+        width: 1200px;
+        height: 1200px;
+        padding: 20px;
+        margin: auto;
+    }
+
+    .Registrar h1 {
+        width: 1000px;
+    }
+
+    .Registrar h2 {
+        margin-left: 100px;
+        line-height: 4;
+    }
+
+    .itensReg {
+        font-size: 30px;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .fotoreg {
+        width: 200px;
+        height: 200px;
+    }
+
+    .inputlog {
+        width: 900px;
+        height: 20px;
+        padding: 20px;
+        margin: 10px;
+        font-size: 40px;
+    }
+
+    .inputlog input {
+        width: 600px;
+        height: 20px;
+        font-size: 30px;
+    }
+
+    .itensReg button {
+        width: 1000px;
+        height: 60px;
+        font-size: 30px;
+    }
+
+    .Certificado {
+        margin: auto 400px;
+    }
+
+    .Certificado img {
+        width: 1000px;
+    }
+
+    .modal-content {
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .modal-content h2 {
+        font-size: 24px;
+    }
+
+    #editorCanvas {
+        width: 400px;
+        height: 400px;
+    }
+
+    .modal-content button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .close {
+        font-size: 28px;
+    }
+
+    .card-perfil {
+        padding: 20px;
+        max-width: 300px;
+        margin: 20px auto;
+    }
+
+    .card-perfil img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .obs {
+        position: absolute;
+        top: 200%; /* Keep original position */
+        padding: 20px 0;
+        margin-top: 50px;
+        font-size: 14px;
+    }
 }

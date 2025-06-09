@@ -191,8 +191,11 @@
             <div class="foto">
                 <img id="fotoPerfil" src="Profile-PNG-Free-Image.png" alt="Foto de perfil" />
             </div>
-            <ion-icon name="chevron-down-outline" id="icon1" style="display: none; font-size: 25px; padding-left: 10px; cursor: pointer;" onclick="fecharConf()"></ion-icon>
-            <ion-icon name="chevron-back-outline" style="font-size: 25px; padding-left: 10px; cursor: pointer;" id="icon2" onclick="abrirConf()"></ion-icon>
+            <ion-icon name="chevron-down-outline" id="icon1"
+                style="display: none; font-size: 25px; padding-left: 10px; cursor: pointer;" onclick="fecharConf()">
+            </ion-icon>
+            <ion-icon name="chevron-back-outline" style="font-size: 25px; padding-left: 10px; cursor: pointer;"
+                id="icon2" onclick="abrirConf()"></ion-icon>
             <a href="User.html" id="nomeUsuario"> Perfil</a>
         </div>
     </header>
@@ -200,16 +203,16 @@
     <div id="configs">
         <h1>Menu:</h1>
         <a href="User.html"><ion-icon name="person-outline"></ion-icon>Seu perfil</a>
-        <a href="editarperfiluser.html" ><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
+        <a href="editarperfiluser.html"><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
         <a href="Userconfig.html" id="select"><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
         <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
     </div>
 
     <h1 id="titulo"><strong>Configurações</strong></h1>
 
-
-
-    <div class="obs"><h1>Criado por Vinicius Ribeiro</h1></div>
+    <div class="obs">
+        <h1>Criado por Vinicius Ribeiro</h1>
+    </div>
 
     <div id="editorModal" class="modal">
         <div class="modal-content">
@@ -238,9 +241,7 @@
             document.getElementById("icon2").style.display = "block";
         }
 
-        const previewFoto = document.getElementById('previewFoto');
-        const inputFoto = document.getElementById('inputFoto');
-        const fotoPerfil = document.getElementById('fotoPerfil');
+        const fotoPerfil = document.getElementById('fotoPerfil'); // This exists in the header
 
         let editorModal = document.getElementById("editorModal");
         let editorCanvas = document.getElementById("editorCanvas");
@@ -252,33 +253,12 @@
         let zoom = 1;
 
         const zoomRange = document.getElementById('zoomRange');
-        zoomRange.addEventListener('input', function () {
-            zoom = parseFloat(this.value);
-            desenharImagem();
-        });
-
-        previewFoto.addEventListener('click', () => {
-            inputFoto.click();
-        });
-
-        inputFoto.addEventListener('change', () => {
-            const arquivo = inputFoto.files[0];
-            if (arquivo) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    img.src = e.target.result;
-                    img.onload = () => {
-                        offsetX = 0;
-                        offsetY = 0;
-                        zoom = 1;
-                        zoomRange.value = 1;
-                        abrirEditor();
-                        desenharImagem();
-                    };
-                };
-                reader.readAsDataURL(arquivo);
-            }
-        });
+        if (zoomRange) {
+            zoomRange.addEventListener('input', function () {
+                zoom = parseFloat(this.value);
+                desenharImagem();
+            });
+        }
 
         function abrirEditor() {
             editorModal.style.display = "flex";
@@ -301,119 +281,50 @@
             ctx.restore();
         }
 
-        editorCanvas.addEventListener("mousedown", (e) => {
-            dragging = true;
-            startX = e.offsetX;
-            startY = e.offsetY;
-        });
-
-        editorCanvas.addEventListener("mousemove", (e) => {
-            if (dragging) {
-                let dx = e.offsetX - startX;
-                let dy = e.offsetY - startY;
-                offsetX += dx;
-                offsetY += dy;
+        if (editorCanvas) {
+            editorCanvas.addEventListener("mousedown", (e) => {
+                dragging = true;
                 startX = e.offsetX;
                 startY = e.offsetY;
-                desenharImagem();
-            }
-        });
+            });
 
-        editorCanvas.addEventListener("mouseup", () => {
-            dragging = false;
-        });
+            editorCanvas.addEventListener("mousemove", (e) => {
+                if (dragging) {
+                    let dx = e.offsetX - startX;
+                    let dy = e.offsetY - startY;
+                    offsetX += dx;
+                    offsetY += dy;
+                    startX = e.offsetX;
+                    startY = e.offsetY;
+                    desenharImagem();
+                }
+            });
+
+            editorCanvas.addEventListener("mouseup", () => {
+                dragging = false;
+            });
+        }
+
 
         function confirmarCorte() {
             const dataURL = editorCanvas.toDataURL();
-            previewFoto.src = dataURL;
-            fotoPerfil.src = dataURL; // Atualiza a foto no cabeçalho
+            fotoPerfil.src = dataURL; // Updates the photo in the header
             fecharEditor();
         }
 
         window.addEventListener("DOMContentLoaded", () => {
             const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
             if (usuario) {
+                // Update header profile pic and name ONLY
                 fotoPerfil.src = usuario.foto || "Profile-PNG-Free-Image.png";
-                previewFoto.src = usuario.foto || "Profile-PNG-Free-Image.png";
                 document.getElementById("nomeUsuario").textContent = usuario.nome;
-                document.getElementById("inputNome").value = usuario.nome || "";
+
+                // Removed updates for profile display in main settings page
             } else {
                 console.warn("Nenhum usuário logado encontrado no localStorage. Redirecionando.");
                 alert("Nenhum usuário logado. Por favor, faça login.");
-                window.location.href = "login.html"; // Ajuste para a sua página de login
+                window.location.href = "login.html"; // Adjust to your login page
             }
-        });
-
-        document.getElementById("btnConfirmar").addEventListener("click", () => {
-            const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-            if (!usuarioLogado || !usuarioLogado.id || !usuarioLogado.email) {
-                console.error("Erro: Dados do usuário incompletos no localStorage.", usuarioLogado);
-                alert("Erro: Dados do usuário não encontrados ou incompletos. Por favor, faça login novamente.");
-                window.location.href = "login.html";
-                return;
-            }
-
-            const userId = usuarioLogado.id;
-            const userEmail = usuarioLogado.email; // Pegamos o email também para o backend
-            const nome = document.getElementById("inputNome").value.trim();
-            const foto = previewFoto.src;
-            const descricao = usuarioLogado.descricao || "";
-
-            console.log("Frontend: Preparando para enviar PUT.");
-            console.log("Frontend: ID do usuário:", userId, "Email:", userEmail);
-            console.log("Frontend: Nome a ser enviado:", nome);
-            console.log("Frontend: Foto (início):", foto.substring(0, 100) + '...');
-            console.log("Frontend: Descrição:", descricao);
-
-
-            if (!nome) {
-                alert("Por favor, insira um nome.");
-                return;
-            }
-            if (foto.endsWith("Profile-PNG-Free-Image.png")) {
-                alert("Por favor, envie e confirme a sua foto!");
-                return;
-            }
-
-            const usuarioAtualizado = {
-                nome: nome,
-                foto: foto,
-                descricao: descricao,
-                // Incluímos o email aqui para uma possível verificação no backend
-                email: userEmail
-            };
-
-            fetch(`http://localhost:3000/api/usuarios/${userId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(usuarioAtualizado),
-            })
-                .then((response) => {
-                    console.log("Frontend: Resposta recebida. Status:", response.status);
-                    if (!response.ok) {
-                        return response.json().then((data) => {
-                            console.error("Frontend: Erro recebido do servidor:", data.error);
-                            throw new Error(data.error || "Erro desconhecido ao atualizar perfil.");
-                        });
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log("Frontend: Sucesso! Dados atualizados:", data);
-                    // Atualiza o localStorage com os novos dados do usuário
-                    usuarioLogado.nome = nome;
-                    usuarioLogado.foto = foto;
-                    usuarioLogado.descricao = descricao;
-                    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
-
-                    alert(data.message);
-                    window.location.href = "User.html";
-                })
-                .catch((error) => {
-                    console.error("Frontend: Erro na requisição PUT:", error);
-                    alert("Erro: " + error.message + ". Verifique o console do navegador e do servidor para mais detalhes.");
-                });
         });
     </script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

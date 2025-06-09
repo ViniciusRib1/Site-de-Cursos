@@ -27,6 +27,25 @@ function fecharConf() {
     icon1.style.display = "none";
     icon2.style.display = "block";
 }
+function abrirnotific() {
+        const notific = document.getElementById("notific");
+        const iconno1 = document.getElementById("a");
+        const iconno2 = document.getElementById("b");
+
+        iconno2.style.display = "block";
+        iconno1.style.display = "none";
+        notific.classList.add('active'); 
+    }
+
+    function fecharnotific() {
+        const notific = document.getElementById("notific");
+        const iconno1 = document.getElementById("a");
+        const iconno2 = document.getElementById("b");
+
+        iconno2.style.display = "none";
+        iconno1.style.display = "block";
+        notific.classList.remove('active');
+    }
 </script>
   <body>
     <header id="cabecalho">
@@ -60,6 +79,10 @@ function fecharConf() {
       <a href="editarperfiluser.html"><ion-icon name="create-outline"></ion-icon> Editar perfil</a>
       <a href="Userconfig.html"><ion-icon name="settings-outline"></ion-icon> Configurações do site</a>
       <a href="registrar-se.html"><ion-icon name="exit-outline"></ion-icon> Sair da conta</a>
+  </div>
+  <div id="notific">
+          <h1>Notificações: </h1>
+          <h3>Você não tem nenhuma notificação!</h3>
   </div>
 
   <br>
